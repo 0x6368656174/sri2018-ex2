@@ -1,0 +1,41 @@
+# Dependencies
+/node_modules
+
+# Temp files
+*~
+*.tpm
+.php_cs.cache
+
+# Outputs
+/dist
+dist.tar.gz
+dist.zip
+dist.rar
+dist.7z
+
+# IDEs and editors
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - IDEA
+.idea/
+
+# IDE - VSCode
+.vscode/
+
+# Misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/src/typings
+
+# System Files
+.DS_Store
+Thumbs.db

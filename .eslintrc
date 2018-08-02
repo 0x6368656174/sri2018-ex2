@@ -1,0 +1,32 @@
+{
+  "extends": ["eslint:recommended", "google"],
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jquery": true
+  },
+  "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "array-callback-return": "error",
+    "eqeqeq": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "tabWidth": 2
+      }
+    ],
+    "no-console": "off",
+    "no-useless-concat": "error",
+    "object-shorthand": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "require-jsdoc": "off",
+    "template-curly-spacing": "error"
+  }
+}
