@@ -51,7 +51,6 @@ module.exports = function(content) {
   const data = {};
   content = [content];
   links.forEach(link => {
-    console.log(link);
     if (!loaderUtils.isUrlRequest(link.value, root)) return;
 
     if (link.value.indexOf('mailto:') > -1) return;
