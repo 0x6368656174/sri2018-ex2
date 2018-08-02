@@ -66,6 +66,9 @@ module.exports = (mode, serve) => ({
           use: [
             {
               loader: 'html-loader',
+              options: {
+                attrs: ['img:src', 'img:srcset', 'source:srcset']
+              }
             },
             {
               loader: 'add-asserts.loader',
@@ -112,9 +115,8 @@ module.exports = (mode, serve) => ({
         test: /\.(png|jpg|gif|svg|ttf|woff|woff2|eot)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 8192,
               outputPath: 'assets/',
             },
           },
