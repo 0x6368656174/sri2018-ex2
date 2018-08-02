@@ -1,13 +1,13 @@
 const fs = require('fs');
-const glob = require("glob");
-const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const glob = require('glob');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ExtractCssPlugin = require('mini-css-extract-plugin');
 const PostCssPresetEnv = require('postcss-preset-env');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const SuppressChunksPlugin = require("./suppress-chunks.plugin");
-const TwigPlugin = require("./twig.plugin");
+const SuppressChunksPlugin = require('./suppress-chunks.plugin');
+const TwigPlugin = require('./twig.plugin');
 
 function nodeModulesPath() {
   const main = require.main;
@@ -19,7 +19,7 @@ function nodeModulesPath() {
 }
 
 const extractTwigPlugin = new ExtractTextPlugin({
-  filename: "[name].twig"
+  filename: '[name].twig',
 });
 
 const extractCssPlugin = new ExtractCssPlugin({
@@ -33,7 +33,7 @@ const postCssCssNextPlugins = [
   PostCssPresetEnv,
 ];
 
-const context = path.join(process.cwd(), "src");
+const context = path.join(process.cwd(), 'src');
 
 module.exports = (mode, serve) => ({
   mode: 'development',
@@ -50,7 +50,7 @@ module.exports = (mode, serve) => ({
       let files = file;
 
       // Добавим SCSS файл
-      const scssFile = path.join(context, entryName + ".scss");
+      const scssFile = path.join(context, `${entryName}.scss`);
       if (fs.existsSync(scssFile)) {
         files = [file, scssFile];
       }
@@ -65,62 +65,62 @@ module.exports = (mode, serve) => ({
         use: extractTwigPlugin.extract({
           use: [
             {
-              loader: "html-loader"
+              loader: 'html-loader',
             },
             {
-              loader: "add-asserts.loader",
+              loader: 'add-asserts.loader',
               options: {
                 serve,
                 servePort: 4200,
-              }
-            }
-          ]
-        })
+              },
+            },
+          ],
+        }),
       },
       {
         test: /\.s?[ac]ss$/,
         use: [
           ExtractCssPlugin.loader,
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               minimize: mode !== 'production',
-              sourceMap: mode !== 'production'
-            }
+              sourceMap: mode !== 'production',
+            },
           },
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               plugins: postCssCssNextPlugins,
-              sourceMap: mode !== 'production'
-            }
+              sourceMap: mode !== 'production',
+            },
           },
           {
             // Используем, для того, чтоб в scss правильно резелвились url()
-            loader: "resolve-url-loader"
+            loader: 'resolve-url-loader',
           },
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
               // Для Sass-loader source map должен генерироваться всегда, иначе не будет работать resolve-url-loader
-              sourceMap: true
-            }
-          }
-        ]
+              sourceMap: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpg|gif|svg|ttf|woff|woff2|eot)$/,
         use: [
           {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
               limit: 8192,
-              outputPath: "assets/"
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: 'assets/',
+            },
+          },
+        ],
+      },
+    ],
   },
   optimization: {
     runtimeChunk: 'single',
@@ -132,11 +132,11 @@ module.exports = (mode, serve) => ({
           name: 'style',
           test: m => m.constructor.name === 'CssModule',
         },
-      }
-    }
+      },
+    },
   },
   output: {
-    path: path.resolve(process.cwd(), "dist")
+    path: path.resolve(process.cwd(), 'dist'),
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], {root: process.cwd(), verbose: true}),
@@ -150,6 +150,6 @@ module.exports = (mode, serve) => ({
     modules: [...nodeModulesPath(), __dirname],
   },
   resolve: {
-    extensions: [".js", ".scss", ".twig"]
+    extensions: ['.js', '.scss', '.twig'],
   },
 });
