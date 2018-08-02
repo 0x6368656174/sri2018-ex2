@@ -44,6 +44,7 @@ module.exports = (mode, serve) => {
   const context = path.join(process.cwd(), 'src');
   return {
     mode: 'development',
+    devtool: mode !== 'production' ? 'source-map' : false,
     entry: () => {
       const files = glob.sync(`${context}/**/*.twig`);
       return files.reduce((entry, file) => {
@@ -129,6 +130,19 @@ module.exports = (mode, serve) => {
             },
           ],
         },
+        {
+          exclude: /(node_modules|bower_components)/,
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              cacheDirectory: true,
+              plugins: ['@babel/plugin-transform-runtime'],
+              presets: ['@babel/preset-env'],
+            },
+          },
+        },
       ],
     },
     optimization: {
@@ -147,8 +161,11 @@ module.exports = (mode, serve) => {
     output: {
       path: path.resolve(process.cwd(), 'dist'),
     },
+    performance: {
+      hints: false, // Уберем предупреждения
+    },
     plugins: [
-      new CleanWebpackPlugin(['dist'], {root: process.cwd(), verbose: true}),
+      new CleanWebpackPlugin(['dist'], {root: process.cwd(), verbose: false}),
       extractTwigPlugin,
       extractCssPlugin,
       suppressChunksPlugin,
@@ -161,5 +178,6 @@ module.exports = (mode, serve) => {
     resolve: {
       extensions: ['.js', '.scss', '.twig'],
     },
+    target: 'web',
   };
 };
