@@ -1,0 +1,30 @@
+{% if icon == 'rain' %}
+  {% set fileName = 'cloud-drizzle' %}
+  {% set alt = 'дождь' %}
+{% elseif icon == 'menu' %}
+  {% set fileName = 'list' %}
+  {% set alt = 'меню' %}
+{% elseif icon == 'clock' %}
+  {% set fileName = 'scheduled' %}
+  {% set alt = 'часы' %}
+{% elseif icon == 'temperature--gray' %}
+  {% set fileName = icon %}
+  {% set alt = 'серый термометр' %}
+{% elseif icon == 'temperature--orange' %}
+  {% set fileName = icon %}
+  {% set alt = 'оранжевый термометр' %}
+{% elseif icon == 'sun--gray' %}
+  {% set fileName = icon %}
+  {% set alt = 'серое солнце' %}
+{% elseif icon == 'sun--orange' %}
+  {% set fileName = icon %}
+  {% set alt = 'оранжевое солнце' %}
+{% endif %}
+
+<snap class="c-icon c-icon--{{ icon }} {{ class }}">
+  {% include 'components/c-image/c-image.twig' with {
+    fileName: 'icons/' ~ fileName,
+    alt: alt,
+    class: 'c-icon__image'
+  } %}
+</snap>

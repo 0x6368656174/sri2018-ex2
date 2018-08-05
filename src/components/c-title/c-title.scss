@@ -1,0 +1,25 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.c-title {
+  &__header {
+    font-size: rem(18px);
+    font-weight: bold;
+    margin: 0;
+
+    &--level-h2 {
+      font-size: rem(14px);
+    }
+  }
+
+  &__description {
+    font-size: rem(12px);
+    margin-bottom: 0;
+    margin-top: rem(5px);
+
+    &--level-h2 {
+      color: $color-gray;
+    }
+  }
+}

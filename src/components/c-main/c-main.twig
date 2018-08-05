@@ -1,0 +1,61 @@
+<section class="c-main">
+  <div class="c-main__text-content">
+    {% include 'components/c-title/c-title.twig' with {
+      title: 'Привет, Геннадий!',
+      description: 'Двери и окна закрыты, сигнализация включена.',
+      class: 'c-main__header'
+    } %}
+
+    <ul class="c-main__temperatures">
+      <li class="c-main__temperature">
+        <div class="c-main__temperature-location">Дома</div>
+        <div class="c-main__temperature-value">+23</div>
+      </li>
+      <li class="c-main__temperature">
+        <div class="c-main__temperature-location">За окном</div>
+        <div class="c-main__temperature-value">
+          +19
+          {% include 'components/c-icon/c-icon.twig' with {icon: 'rain', class: 'c-main__temperature-icon'} %}
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  {% set scripts = [
+    {
+      icon: 'temperature--gray',
+      title: 'Philips Cooler',
+      description: 'Начнет охлаждать в 16:30'
+    },
+    {
+      icon: 'sun--gray',
+      title: 'Xiaomi Yeelight LED Smart Bulb',
+      description: 'Включится в 17:00'
+    },
+    {
+      icon: 'temperature--gray',
+      title: 'Philips Cooler',
+      description: 'Начнет охлаждать в 16:30'
+    },
+    {
+      icon: 'sun--gray',
+      title: 'Xiaomi Yeelight LED Smart Bulb',
+      description: 'Включится в 17:00'
+    },
+  ] %}
+
+  <div class="c-main__favorite-scripts-container">
+    <ul class="c-main__favorite-scripts">
+      {% for script in scripts %}
+        <li class="c-main__favorite-script">
+          {% include 'components/c-tile/c-tile.twig' with {
+            icon: script.icon,
+            title: script.title,
+            description: script.description
+          }%}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</section>

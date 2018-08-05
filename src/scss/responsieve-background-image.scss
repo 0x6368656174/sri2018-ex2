@@ -1,0 +1,12 @@
+@mixin responsive-background-image($fileName) {
+  background-image: url('../../assets/'+$fileName+'@1x.png');
+
+  background-image: image-set(url('../../assets/'+$fileName+'@1x.png') 1x, url('../../assets/'+$fileName+'@2x.png') 2x);
+
+  /* stylelint-disable-next-line */
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .img {
+      background-image: url('../../assets/'+$fileName+'@2x.png');
+    }
+  }
+}

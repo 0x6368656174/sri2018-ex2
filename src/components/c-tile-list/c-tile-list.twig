@@ -1,0 +1,38 @@
+<section class="c-tile-list">
+  <div class="c-tile-list__title {{ filters ? 'c-tile-list__title--with-filters' }}">
+    {% include 'components/c-title/c-title.twig' with {
+      title: title,
+    } %}
+
+    {% if filters %}
+      <ul class="c-tile-list__filters">
+        <li class="c-tile-list__filter c-tile-list__filter--active">Все</li>
+        {% for filterParam, filterOptions in filters %}
+          {% for filterOptionValue, filterOptionName in filterOptions %}
+            <li class="c-tile-list__filter" data-param="{{ filterParam }}" data-value="{{ filterOptionValue }}">{{ filterOptionName }}</li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+
+
+  <div class="c-tile-list__tiles-container">
+    <ul class="c-tile-list__tiles">
+      {% for tile in tiles %}
+        {% set data = '' %}
+        {% for paramKey, paramValue in tile.param %}
+          {% set data = data ~ 'data-' ~ paramKey ~ '="' ~paramValue ~ '" ' %}
+        {% endfor %}
+        <li class="c-tile-list__tile" {{ data }}>
+          {% include 'components/c-tile/c-tile.twig' with {
+            icon: tile.icon,
+            title: tile.title,
+            description: tile.description,
+            style: style,
+          }%}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

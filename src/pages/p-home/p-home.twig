@@ -1,7 +1,147 @@
-<html>
-<head></head>
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" lang="ru-RU"> <![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" lang="ru-RU"> <![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" lang="ru-RU"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="ru-RU"> <!--<![endif]-->
+<head>
+  <meta charset="UTF-8" />
+  <title>
+    Яндекс Дом
+  </title>
+  <meta name="description" content="Панель управления умным домом от Яндекс">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  {#<link rel="pingback" href="{{ site.pingback_url }}" />#}
+  {#<link rel="icon" href="{{ site.url }}/favicon.ico" type="image/x-icon" />#}
+  {#<link rel="shortcut icon" href="{{ site.url }}/favicon.ico" type="image/x-icon" />#}
+  {#<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet">#}
+</head>
 <body>
-{% include 'components/c-home-header/c-home-header.twig' %}
-{% include 'components/c-home-tile/c-home-tile.twig' %}
+<div class="p-home">
+  <div class="p-home__header">
+    {% include '/components/c-header/c-header.twig' %}
+  </div>
+
+  <div class="p-home__main">
+    {% include 'components/c-main/c-main.twig' %}
+  </div>
+
+  <div class="p-home__favorite-scripts">
+    {% set scripts = [
+      {
+        icon: 'sun--orange',
+        title: 'Выключить весь свет в доме и во дворе',
+      },
+      {
+        icon: 'clock',
+        title: 'Я ухожу',
+      },
+      {
+        icon: 'sun--orange',
+        title: 'Включить свет в коридоре',
+      },
+      {
+        icon: 'temperature--orange',
+        title: 'Набрать горячую ванну',
+        description: 'Начнётся в 18:00',
+      },
+      {
+        icon: 'temperature--orange',
+        title: 'Сделать пол тёплым во всей квартире',
+      },
+    ] %}
+
+    {% include 'components/c-tile-list/c-tile-list.twig' with {
+      title: 'Избранные сценарии',
+      style: 'low',
+      tiles: scripts,
+    } %}
+  </div>
+
+  <div class="p-home__favorite-devices">
+    {% set devices = [
+      {
+        icon: 'sun--orange',
+        title: 'Xiaomi Yeelight LED Smart Bulb',
+        param: {
+          type: 'lamp',
+          location: 'hall',
+        },
+        description: 'Включено'
+      },
+      {
+        icon: 'sun--gray',
+        title: 'D-Link Omna 180 Cam',
+        param: {
+          type: 'lamp',
+          location: 'kitchen',
+        },
+        description: 'Включится в 17:00',
+      },
+      {
+        icon: 'temperature--orange',
+        title: 'Elgato Eve Degree Connected',
+        param: {
+          type: 'cam',
+          location: 'hall',
+        },
+        description: 'Выключено до 17:00',
+      },
+      {
+        icon: 'sun--gray',
+        title: 'LIFX Mini Day & Dusk A60 E27',
+        param: {
+          type: 'lamp',
+          location: 'kitchen',
+        },
+        description: 'Включится в 17:00',
+      },
+      {
+        icon: 'sun--orange',
+        title: 'Xiaomi Mi Air Purifier 2S',
+        param: {
+          type: 'lamp',
+          location: 'hall',
+        },
+        description: 'Включено'
+      },
+      {
+        icon: 'sun--gray',
+        title: 'Philips Zhirui',
+        param: {
+          type: 'lamp',
+          location: 'hall',
+        },
+        description: 'Выключено',
+      },
+      {
+        icon: 'sun--orange',
+        title: 'Xiaomi Mi Air Purifier 2S',
+        param: {
+          type: 'lamp',
+          location: 'hall',
+        },
+        description: 'Включено'
+      },
+    ] %}
+
+    {% include 'components/c-tile-list/c-tile-list.twig' with {
+      title: 'Избранные устройства',
+      tiles: devices,
+      filters: {
+        location: {
+          kitchen: 'Кухня',
+          hall: 'Зал',
+        },
+        type: {
+          lamp: 'Лампочки',
+          cam: 'Камеры'
+        },
+      },
+    } %}
+  </div>
+</div>
 </body>
 </html>

@@ -5,9 +5,6 @@ const path = require('path');
 const glob = require('glob');
 
 module.exports = function(content) {
-  // const query = loaderUtils.parseQuery(this.query);
-  console.log(this.resourcePath);
-
   const callback = this.async();
 
   const options = loaderUtils.getOptions(this);
@@ -15,7 +12,12 @@ module.exports = function(content) {
 
   const context = path.join(process.cwd(), 'src');
 
-  // const resourceBaseName = path.basename(this.resourcePath);
+  const resourceBaseName = path.basename(this.resourcePath);
+
+  if (!resourceBaseName.startsWith('p-')) {
+    callback(null, '');
+    return;
+  }
 
   const twigOptions = {
     settings: {
@@ -23,8 +25,14 @@ module.exports = function(content) {
     },
   };
 
-  // Найдем все .js файлы
+  const twigs = glob.sync(path.join(context, '**/*.twig'));
+  for (const twig of twigs) {
+    this.addDependency(twig);
+  }
 
+  if (serve) {
+    twig.cache(false);
+  }
 
   twig.renderFile(this.resourcePath, twigOptions, (err, html) => {
     if (err) {
@@ -51,8 +59,6 @@ module.exports = function(content) {
     if (serve) {
       scripts += `<script type="text/javascript" src="http://localhost:${servePort}/webpack-dev-server.js" defer></script>\n`;
     }
-
-    const twigs = glob.sync(path.join(context, '**/*.twig'));
 
     for (const twig of twigs) {
       const jsFile = twig.replace(/\.twig$/, '.js');

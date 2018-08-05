@@ -42,7 +42,7 @@ module.exports = (mode, serve) => {
   const context = path.join(process.cwd(), 'src');
   return {
     mode: 'development',
-    devtool: mode !== 'production' ? 'source-map' : false,
+    devtool: mode !== 'production' ? 'inline-source-map' : false,
     entry: () => {
       const files = glob.sync(`${context}/**/*.twig`);
       const assets = files

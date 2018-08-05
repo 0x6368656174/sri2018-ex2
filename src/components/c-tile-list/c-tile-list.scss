@@ -1,0 +1,77 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+@import '../../scss/responsieve-background-image';
+
+.c-tile-list {
+  &__title {
+    align-items: center;
+    display: flex;
+    margin-bottom: rem(20px);
+    margin-left: rem(20px);
+    margin-right: rem(20px);
+
+    &--with-filters {
+      margin-bottom: rem(13px);
+    }
+  }
+
+  &__tiles-container {
+    overflow-x: scroll;
+    width: 100%;
+  }
+
+  &__tiles {
+    display: inline-flex;
+    list-style: none;
+    margin: 0;
+    margin-left: rem(20px);
+    margin-right: rem(20px);
+    padding: 0;
+  }
+
+  &__tile {
+    margin-right: rem(15px);
+
+    &:nth-last-of-type(1) {
+      margin-right: 0;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__filters {
+    display: flex;
+    list-style: none;
+    margin: 0 0 0 auto;
+    padding: 0;
+  }
+
+  &__filter {
+    align-items: center;
+    border-radius: rem(15px);
+    display: none;
+    font-size: rem(13px);
+    font-weight: bold;
+    height: rem(30px);
+    padding-left: rem(15px);
+    padding-right: rem(15px);
+
+    &--active {
+      background-color: $color-yellow;
+      display: flex;
+    }
+
+    &--active::after {
+      @include responsive-background-image(arrow--down);
+      background-size: rem(12px) rem(12px);
+      content: '';
+      display: inline-block;
+      height: rem(12px);
+      margin-left: rem(4px);
+      width: rem(12px);
+    }
+  }
+}

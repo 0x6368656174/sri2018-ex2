@@ -1,0 +1,13 @@
+<section class="c-tile c-tile--style-{{ style|default('normal') }}">
+  <div class="c-tile__icon">
+    {% include 'components/c-icon/c-icon.twig' with {icon: icon} %}
+  </div>
+
+  <div class="c-tile__title">
+    {% include 'components/c-title/c-title.twig' with {
+      level: 'h2',
+      title: title,
+      description: description
+    } %}
+  </div>
+</section>

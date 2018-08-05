@@ -1,0 +1,21 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.c-tile {
+  background-color: $color-light-gray;
+  border-radius: rem(20px);
+  display: flex;
+  flex-direction: column;
+  height: rem(120px);
+  padding: rem(15px);
+  width: rem(200px);
+
+  &--style-low {
+    height: rem(100px);
+  }
+
+  &__title {
+    margin-top: auto;
+  }
+}

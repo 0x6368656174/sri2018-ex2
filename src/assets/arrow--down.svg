@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="15"
+   viewBox="0 0 16 15"
+   version="1.1"
+   id="svg21"
+   sodipodi:docname="arrow--down.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11">
+  <metadata
+     id="metadata25">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Icons / Arrow Right / M Copy@2x</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1019"
+     id="namedview23"
+     showgrid="false"
+     inkscape:zoom="5.12"
+     inkscape:cx="-0.90023752"
+     inkscape:cy="28.161109"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg21"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title2">Icons / Arrow Right / M Copy@2x</title>
+  <desc
+     id="desc4">Created with Sketch.</desc>
+  <defs
+     id="defs7">
+    <path
+       d="m 7.5,11.726947 c -0.3862693,0 -0.6234969,-0.154574 -0.9352454,-0.487105 L 1.177764,5.4937184 c -0.32035199,-0.3417087 -0.32035199,-0.8957281 0,-1.2374368 0.3203519,-0.3417088 0.8397451,-0.3417088 1.160097,0 L 7.5,9.7625631 12.662139,4.2562816 c 0.320352,-0.3417088 0.839745,-0.3417088 1.160097,0 0.320352,0.3417087 0.320352,0.8957281 0,1.2374368 0,0 -3.578547,3.8171165 -5.36782,5.7256746 C 8.1362773,11.558741 7.8862693,11.726947 7.5,11.726947 Z"
+       id="path-1"
+       inkscape:connector-curvature="0" />
+  </defs>
+  <g
+     id="favorites"
+     transform="rotate(-90,621.5,633.5)"
+     style="opacity:0.3;fill:none;fill-rule:evenodd;stroke:none;stroke-width:1">
+    <g
+       id="Icons-/-Arrow-Right-/-M-Copy"
+       transform="matrix(-1,0,0,1,1255,12)">
+      <g
+         id="Direct-/-Icons-/-Arrow-Right-/-M">
+        <rect
+           id="box"
+           x="0"
+           y="0"
+           width="15"
+           height="16" />
+        <mask
+           id="mask-2"
+           fill="white">
+          <use
+             xlink:href="#path-1"
+             id="use12"
+             x="0"
+             y="0"
+             width="100%"
+             height="100%" />
+        </mask>
+        <use
+           id="icon_arrow-right_m"
+           transform="matrix(0,1,1,0,-0.363474,0.363474)"
+           xlink:href="#path-1"
+           style="fill:#000000;fill-rule:nonzero"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+    </g>
+  </g>
+</svg>

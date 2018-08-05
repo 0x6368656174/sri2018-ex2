@@ -1,0 +1,17 @@
+@import '~sass-rem';
+
+.c-header {
+  align-items: center;
+  display: flex;
+
+  &__logo {
+    height: rem(27px);
+    width: rem(108px);
+  }
+
+  &__menu {
+    height: rem(13.3px);
+    margin-left: auto;
+    width: rem(16px);
+  }
+}

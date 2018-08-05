@@ -1,0 +1,11 @@
+<div class="c-title {{ class }} c-title--level-{{ level|default('h1') }}">
+  <h1 class="c-title__header c-title__header--level-{{ level|default('h1') }}">
+    {{ title }}
+  </h1>
+
+  {% if description %}
+    <p class="c-title__description c-title__description--level-{{ level|default('h1') }}">
+      {{ description }}
+    </p>
+  {% endif %}
+</div>
