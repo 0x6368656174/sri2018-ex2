@@ -49,7 +49,7 @@ for (const filter of filters) {
     });
 
   // Привяжем плагин с фильтром
-  new MobileSelect({
+  const select = new MobileSelect({
     trigger: `.${idClass} .c-tile-list__filter--active`,
     title: 'Фильтр устройств',
     wheels: [
@@ -61,5 +61,18 @@ for (const filter of filters) {
     cancelBtnText: 'Отмена',
     callback: (index, data) => filterTiles(filter, data[0].id),
   });
+
+  // Добавим обработчики для нажатия на Энтер и пробел над фильтром
+  for (const filterOption of filterOptions) {
+    filterOption.addEventListener('keypress', event => {
+      if (event.key === ' ' || event.key === 'Enter') {
+        select.show();
+      }
+    });
+  }
+
+  // В плагине табы и управление с клавиатуры работать не будут, т.к. он это не поддерживает, а в задаче про
+  // выпадающее меню ничего сказано не было. Если бы был дизайн, то можно было бы и там нормальный accessibility
+  // запилить
 }
 

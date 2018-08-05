@@ -5,6 +5,7 @@
 .c-tile {
   background-color: $color-light-gray;
   border-radius: rem(20px);
+  border-style: none;
   display: flex;
   flex-direction: column;
   height: rem(120px);

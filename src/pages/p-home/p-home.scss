@@ -9,12 +9,11 @@ html {
 
 .p-home {
   color: $color-black;
-  padding: rem(20px) 0;
+  padding: rem(66px) 0 0;
 
   &__header {
-    margin-bottom: rem(15px);
-    padding-left: rem(20px);
-    padding-right: rem(20px);
+    position: fixed;
+    top: 0;
     width: 100%;
   }
 

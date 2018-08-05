@@ -6,10 +6,10 @@
 
     {% if filters %}
       <ul class="c-tile-list__filters">
-        <li class="c-tile-list__filter c-tile-list__filter--active">Все</li>
+        <li class="c-tile-list__filter c-tile-list__filter--active" role="button" tabindex="0">Все</li>
         {% for filterParam, filterOptions in filters %}
           {% for filterOptionValue, filterOptionName in filterOptions %}
-            <li class="c-tile-list__filter" data-param="{{ filterParam }}" data-value="{{ filterOptionValue }}">{{ filterOptionName }}</li>
+            <li class="c-tile-list__filter" data-param="{{ filterParam }}" data-value="{{ filterOptionValue }}" role="button" tabindex="0">{{ filterOptionName }}</li>
           {% endfor %}
         {% endfor %}
       </ul>
