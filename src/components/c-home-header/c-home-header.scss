@@ -1,0 +1,10 @@
+@import '~sass-rem';
+
+.c-home-header {
+  display: flex;
+
+  &__logo {
+    height: rem(27px);
+    width: rem(108px);
+  }
+}

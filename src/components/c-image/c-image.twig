@@ -1,0 +1,8 @@
+<picture>
+  <source type="image/svg+xml" srcset="../../assets/{{ fileName }}.svg">
+  <source type="image/png" srcset="../../assets/{{ fileName }}@1x.png">
+  <source type="image/png" srcset="../../assets/{{ fileName }}@2x.png 2x">
+
+  <img class="c-image {{ class }}" srcset="../../assets/{{ fileName }}@1x.png, ../../assets/{{ fileName }}@2x.png 2x"
+       src="../../assets/{{ fileName }}@1x.png" alt="{{ alt }}">
+</picture>

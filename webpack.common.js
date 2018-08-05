@@ -8,7 +8,6 @@ const PostCssPresetEnv = require('postcss-preset-env');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const SuppressChunksPlugin = require('./suppress-chunks.plugin');
-const TwigPlugin = require('./twig.plugin');
 
 
 module.exports = (mode, serve) => {
@@ -22,7 +21,7 @@ module.exports = (mode, serve) => {
   }
 
   const extractTwigPlugin = new ExtractTextPlugin({
-    filename: '[name].twig',
+    filename: '[name].html',
   });
 
   const extractCssPlugin = new ExtractCssPlugin({
@@ -30,7 +29,6 @@ module.exports = (mode, serve) => {
   });
 
   const suppressChunksPlugin = new SuppressChunksPlugin();
-  const twigPlugin = new TwigPlugin();
 
   const postCssCssNextPlugins = [
     PostCssPresetEnv,
@@ -47,24 +45,50 @@ module.exports = (mode, serve) => {
     devtool: mode !== 'production' ? 'source-map' : false,
     entry: () => {
       const files = glob.sync(`${context}/**/*.twig`);
-      return files.reduce((entry, file) => {
-        const relativeFile = path.relative(context, file);
-        const relativeFileParts = path.parse(relativeFile);
-        const entryName = path.join(
-          relativeFileParts.dir,
-          relativeFileParts.name
-        );
+      const assets = files
+        .map(file => {
+          const relativeFile = path.relative(context, file);
+          const relativeFileParts = path.parse(relativeFile);
+          const entryName = path.join(
+            relativeFileParts.dir,
+            relativeFileParts.name
+          );
 
-        let files = file;
+          let files = [];
 
-        // Добавим SCSS файл
-        const scssFile = path.join(context, `${entryName}.scss`);
-        if (fs.existsSync(scssFile)) {
-          files = [file, scssFile];
-        }
+          // Добавим JS файл
+          const jsFile = path.join(context, `${entryName}.js`);
+          if (fs.existsSync(jsFile)) {
+            files.push(jsFile);
+          }
 
-        return {...entry, [entryName]: files};
+          // Добавим SCSS файл
+          const scssFile = path.join(context, `${entryName}.scss`);
+          if (fs.existsSync(scssFile)) {
+            files.push(scssFile);
+          }
+
+          return {entryName, files};
+        })
+        .filter(({files}) => files.length > 0)
+        .reduce((entry, {entryName, files}) => {
+          return {...entry, [entryName]: files};
       }, {});
+
+      const pagesDir = path.join(context, 'pages');
+
+      const pages = files
+        .filter(file => file.startsWith(pagesDir))
+        .map(file => {
+          const entryName = path.basename(file, '.twig').substr(2);
+
+          return {entryName, file};
+        })
+        .reduce((entry, {entryName, file}) => {
+          return {...entry, [entryName]: file};
+        }, {});
+
+      return {...assets, ...pages};
     },
     module: {
       rules: [
@@ -79,7 +103,7 @@ module.exports = (mode, serve) => {
                 }
               },
               {
-                loader: 'add-asserts.loader',
+                loader: 'twig-loader',
                 options: {
                   serve,
                   servePort: 4200,
@@ -169,14 +193,13 @@ module.exports = (mode, serve) => {
       extractTwigPlugin,
       extractCssPlugin,
       suppressChunksPlugin,
-      twigPlugin,
     ],
     resolveLoader: {
       // Модули (лоадеры) будем искать в node_modules и в папке со скриптом
       modules: [...nodeModulesPath(), __dirname],
     },
     resolve: {
-      extensions: ['.js', '.scss', '.twig'],
+      extensions: ['.js', '.scss', '.twig', '.html'],
     },
     target: 'web',
   };
