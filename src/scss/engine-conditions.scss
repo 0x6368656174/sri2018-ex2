@@ -1,7 +1,6 @@
 // Добавляет условие, которое применит стили, только если движок FF
 @mixin is-firefox() {
-  /* stylelint-disable-next-line */
-  @-moz-document url-prefix() {
+  @-moz-document url-prefix('') {
     @content;
   }
 }

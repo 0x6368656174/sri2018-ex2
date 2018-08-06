@@ -20,11 +20,11 @@
   // (https://bugzilla.mozilla.org/show_bug.cgi?id=1426919)
   // поэтому блюра не будет, и поэтому сделаем фон чутка более темным, чтоб выглядело получше
   @include is-firefox {
-    .modal--modal-visible {
+    &--modal-visible {
       background-color: rgba($color-black, 0.8);
     }
 
-    .modal-static-content--modal-visible {
+    &__static-content--modal-visible {
       filter: none;
     }
   }
