@@ -20,128 +20,132 @@
 </head>
 <body>
 <div class="p-home">
-  <div class="p-home__header">
-    {% include '/components/c-header/c-header.twig' %}
-  </div>
+  <div class="p-home__static-content modal__static-content">
+    <div class="p-home__header">
+      {% include '/components/c-header/c-header.twig' %}
+    </div>
 
-  <div class="p-home__main">
-    {% include 'components/c-main/c-main.twig' %}
-  </div>
+    <div class="p-home__main">
+      {% include 'components/c-main/c-main.twig' %}
+    </div>
 
-  <div class="p-home__favorite-scripts">
-    {% set scripts = [
-      {
-        icon: 'sun--orange',
-        title: 'Выключить весь свет в доме и во дворе',
-      },
-      {
-        icon: 'clock',
-        title: 'Я ухожу',
-      },
-      {
-        icon: 'sun--orange',
-        title: 'Включить свет в коридоре',
-      },
-      {
-        icon: 'temperature--orange',
-        title: 'Набрать горячую ванну',
-        description: 'Начнётся в 18:00',
-      },
-      {
-        icon: 'temperature--orange',
-        title: 'Сделать пол тёплым во всей квартире',
-      },
-    ] %}
+    <div class="p-home__favorite-scripts">
+      {% set scripts = [
+        {
+          icon: 'sun--orange',
+          title: 'Выключить весь свет в доме и во дворе',
+        },
+        {
+          icon: 'clock',
+          title: 'Я ухожу',
+        },
+        {
+          icon: 'sun--orange',
+          title: 'Включить свет в коридоре',
+        },
+        {
+          icon: 'temperature--orange',
+          title: 'Набрать горячую ванну',
+          description: 'Начнётся в 18:00',
+        },
+        {
+          icon: 'temperature--orange',
+          title: 'Сделать пол тёплым во всей квартире',
+        },
+      ] %}
 
-    {% include 'components/c-tile-list/c-tile-list.twig' with {
-      title: 'Избранные сценарии',
-      style: 'low',
-      tiles: scripts,
-    } %}
-  </div>
+      {% include 'components/c-tile-list/c-tile-list.twig' with {
+        title: 'Избранные сценарии',
+        style: 'low',
+        tiles: scripts,
+      } %}
+    </div>
 
-  <div class="p-home__favorite-devices">
-    {% set devices = [
-      {
-        icon: 'sun--orange',
-        title: 'Xiaomi Yeelight LED Smart Bulb',
-        param: {
+    <div class="p-home__favorite-devices">
+      {% set devices = [
+        {
+          icon: 'sun--orange',
+          title: 'Xiaomi Yeelight LED Smart Bulb',
+          param: {
           type: 'lamp',
           location: 'hall',
         },
-        description: 'Включено'
-      },
-      {
-        icon: 'sun--gray',
-        title: 'D-Link Omna 180 Cam',
-        param: {
+          description: 'Включено'
+        },
+        {
+          icon: 'sun--gray',
+          title: 'D-Link Omna 180 Cam',
+          param: {
           type: 'lamp',
           location: 'kitchen',
         },
-        description: 'Включится в 17:00',
-      },
-      {
-        icon: 'temperature--orange',
-        title: 'Elgato Eve Degree Connected',
-        param: {
+          description: 'Включится в 17:00',
+        },
+        {
+          icon: 'temperature--orange',
+          title: 'Elgato Eve Degree Connected',
+          param: {
           type: 'cam',
           location: 'hall',
         },
-        description: 'Выключено до 17:00',
-      },
-      {
-        icon: 'sun--gray',
-        title: 'LIFX Mini Day & Dusk A60 E27',
-        param: {
+          description: 'Выключено до 17:00',
+        },
+        {
+          icon: 'sun--gray',
+          title: 'LIFX Mini Day & Dusk A60 E27',
+          param: {
           type: 'lamp',
           location: 'kitchen',
         },
-        description: 'Включится в 17:00',
-      },
-      {
-        icon: 'sun--orange',
-        title: 'Xiaomi Mi Air Purifier 2S',
-        param: {
+          description: 'Включится в 17:00',
+        },
+        {
+          icon: 'sun--orange',
+          title: 'Xiaomi Mi Air Purifier 2S',
+          param: {
           type: 'lamp',
           location: 'hall',
         },
-        description: 'Включено'
-      },
-      {
-        icon: 'sun--gray',
-        title: 'Philips Zhirui',
-        param: {
+          description: 'Включено'
+        },
+        {
+          icon: 'sun--gray',
+          title: 'Philips Zhirui',
+          param: {
           type: 'lamp',
           location: 'hall',
         },
-        description: 'Выключено',
-      },
-      {
-        icon: 'sun--orange',
-        title: 'Xiaomi Mi Air Purifier 2S',
-        param: {
+          description: 'Выключено',
+        },
+        {
+          icon: 'sun--orange',
+          title: 'Xiaomi Mi Air Purifier 2S',
+          param: {
           type: 'lamp',
           location: 'hall',
         },
-        description: 'Включено'
-      },
-    ] %}
+          description: 'Включено'
+        },
+      ] %}
 
-    {% include 'components/c-tile-list/c-tile-list.twig' with {
-      title: 'Избранные устройства',
-      tiles: devices,
-      filters: {
-        location: {
-          kitchen: 'Кухня',
-          hall: 'Зал',
+      {% include 'components/c-tile-list/c-tile-list.twig' with {
+        title: 'Избранные устройства',
+        tiles: devices,
+        filters: {
+          location: {
+            kitchen: 'Кухня',
+            hall: 'Зал',
+          },
+          type: {
+            lamp: 'Лампочки',
+            cam: 'Камеры'
+          },
         },
-        type: {
-          lamp: 'Лампочки',
-          cam: 'Камеры'
-        },
-      },
-    } %}
+      } %}
+    </div>
   </div>
+
+  {% include 'modals/m-brightness/m-brightness.twig' %}
 </div>
 </body>
 </html>
