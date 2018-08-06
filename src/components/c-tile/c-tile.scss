@@ -6,11 +6,19 @@
   background-color: $color-light-gray;
   border-radius: rem(20px);
   border-style: none;
-  display: flex;
-  flex-direction: column;
+  font-family: $font-arial;
   height: rem(120px);
-  padding: rem(15px);
+  padding: 0;
   width: rem(200px);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: rem(15px);
+    text-align: left;
+    width: 100%;
+  }
 
   &--style-low {
     height: rem(100px);

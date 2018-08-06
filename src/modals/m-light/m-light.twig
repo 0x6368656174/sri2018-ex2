@@ -1,35 +1,24 @@
-{% extends 'modals/modal.twig' %}
+{% extends 'modals/m-range-dialog/m-range-dialog.twig' %}
 
 {% set title = 'Xiaomi Yeelight LED Smart Bulb' %}
 {% set description = 'Включится в 17:00' %}
 {% set id = 'm-light' %}
-
-{% block content %}
-  <div class="m-light">
-    <div class="m-light__badges">
-      {% set badges = [
-        {
-          href: '#',
-          name: 'Вручную'
-        },
-        {
-          href: '#',
-          name: 'Дневной свет'
-        },
-        {
-          href: '#',
-          name: 'Вечерний свет'
-        },
-        {
-          href: '#',
-          name: 'Рассвет'
-        },
-      ] %}
-      {% include 'components/c-badges/c-badges.twig' %}
-    </div>
-
-    <div class="m-light__range-container">
-      {% include 'forms/f-range/f-range.twig' with {class: 'm-light__range', type: 'light'} %}
-    </div>
-  </div>
-{% endblock%}
+{% set badges = [
+  {
+    href: '#',
+    name: 'Вручную'
+  },
+  {
+    href: '#',
+    name: 'Дневной свет'
+  },
+  {
+    href: '#',
+    name: 'Вечерний свет'
+  },
+  {
+    href: '#',
+    name: 'Рассвет'
+  },
+] %}
+{% set type = 'light' %}

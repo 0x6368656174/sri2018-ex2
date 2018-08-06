@@ -34,6 +34,7 @@
         {
           icon: 'sun--orange',
           title: 'Выключить весь свет в доме и во дворе',
+          dialogType: 'light',
         },
         {
           icon: 'clock',
@@ -42,15 +43,18 @@
         {
           icon: 'sun--orange',
           title: 'Включить свет в коридоре',
+          dialogType: 'light',
         },
         {
           icon: 'temperature--orange',
           title: 'Набрать горячую ванну',
           description: 'Начнётся в 18:00',
+          dialogType: 'temp',
         },
         {
           icon: 'temperature--orange',
           title: 'Сделать пол тёплым во всей квартире',
+          dialogType: 'temp',
         },
       ] %}
 
@@ -67,64 +71,71 @@
           icon: 'sun--orange',
           title: 'Xiaomi Yeelight LED Smart Bulb',
           param: {
-          type: 'lamp',
-          location: 'hall',
-        },
-          description: 'Включено'
+            type: 'lamp',
+            location: 'hall',
+          },
+          description: 'Включено',
+          dialogType: 'light',
         },
         {
           icon: 'sun--gray',
           title: 'D-Link Omna 180 Cam',
           param: {
-          type: 'lamp',
-          location: 'kitchen',
-        },
+            type: 'lamp',
+            location: 'kitchen',
+          },
           description: 'Включится в 17:00',
+          dialogType: 'light',
         },
         {
           icon: 'temperature--orange',
           title: 'Elgato Eve Degree Connected',
           param: {
-          type: 'cam',
-          location: 'hall',
-        },
+            type: 'cam',
+            location: 'hall',
+          },
           description: 'Выключено до 17:00',
+          dialogType: 'temp',
         },
         {
           icon: 'sun--gray',
           title: 'LIFX Mini Day & Dusk A60 E27',
           param: {
-          type: 'lamp',
-          location: 'kitchen',
-        },
+            type: 'lamp',
+            location: 'kitchen',
+          },
           description: 'Включится в 17:00',
+          dialogType: 'light',
         },
         {
           icon: 'sun--orange',
           title: 'Xiaomi Mi Air Purifier 2S',
           param: {
-          type: 'lamp',
-          location: 'hall',
-        },
-          description: 'Включено'
+            type: 'lamp',
+            location: 'hall',
+          },
+          description: 'Включено',
+          dialogType: 'light',
         },
         {
           icon: 'sun--gray',
           title: 'Philips Zhirui',
           param: {
-          type: 'lamp',
-          location: 'hall',
-        },
+            type: 'lamp',
+            location: 'hall',
+          },
           description: 'Выключено',
+          dialogType: 'light',
         },
         {
           icon: 'sun--orange',
           title: 'Xiaomi Mi Air Purifier 2S',
           param: {
-          type: 'lamp',
-          location: 'hall',
-        },
-          description: 'Включено'
+            type: 'lamp',
+            location: 'hall',
+          },
+          description: 'Включено',
+          dialogType: 'light',
         },
       ] %}
 
@@ -146,6 +157,7 @@
   </div>
 
   {% include 'modals/m-light/m-light.twig' %}
+  {% include 'modals/m-temp/m-temp.twig' %}
 </div>
 </body>
 </html>

@@ -25,22 +25,26 @@
     {
       icon: 'temperature--gray',
       title: 'Philips Cooler',
-      description: 'Начнет охлаждать в 16:30'
+      description: 'Начнет охлаждать в 16:30',
+      dialogType: 'temp',
     },
     {
       icon: 'sun--gray',
       title: 'Xiaomi Yeelight LED Smart Bulb',
-      description: 'Включится в 17:00'
+      description: 'Включится в 17:00',
+      dialogType: 'light',
     },
     {
       icon: 'temperature--gray',
       title: 'Philips Cooler',
-      description: 'Начнет охлаждать в 16:30'
+      description: 'Начнет охлаждать в 16:30',
+      dialogType: 'temp',
     },
     {
       icon: 'sun--gray',
       title: 'Xiaomi Yeelight LED Smart Bulb',
-      description: 'Включится в 17:00'
+      description: 'Включится в 17:00',
+      dialogType: 'light',
     },
   ] %}
 
@@ -51,7 +55,8 @@
           {% include 'components/c-tile/c-tile.twig' with {
             icon: script.icon,
             title: script.title,
-            description: script.description
+            description: script.description,
+            dialogType: script.dialogType,
           }%}
         </li>
       {% endfor %}

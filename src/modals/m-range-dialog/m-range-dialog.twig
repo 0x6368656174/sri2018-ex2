@@ -1,0 +1,13 @@
+{% extends 'modals/modal.twig' %}
+
+{% block content %}
+  <div class="m-range-dialog">
+    <div class="m-range-dialog__badges">
+      {% include 'components/c-badges/c-badges.twig' %}
+    </div>
+
+    <div class="m-range-dialog__range-container">
+      {% include 'forms/f-range/f-range.twig' with {class: 'm-range-dialog__range f-range--orientation-vertical'} %}
+    </div>
+  </div>
+{% endblock%}

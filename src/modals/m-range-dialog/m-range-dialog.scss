@@ -1,6 +1,6 @@
 @import '~sass-rem';
 
-.m-light {
+.m-range-dialog {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -17,8 +17,6 @@
   }
 
   &__range {
-    transform: rotate(270deg);
     transform-origin: center;
-    width: 100%;
   }
 }
