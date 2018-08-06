@@ -6,26 +6,30 @@
 
 {% block content %}
   <div class="m-light">
-    {% set badges = [
-      {
-        href: '#',
-        name: 'Вручную'
-      },
-      {
-        href: '#',
-        name: 'Дневной свет'
-      },
-      {
-        href: '#',
-        name: 'Вечерний свет'
-      },
-      {
-        href: '#',
-        name: 'Рассвет'
-      },
-    ] %}
-    {% include 'components/c-badges/c-badges.twig' %}
+    <div class="m-light__badges">
+      {% set badges = [
+        {
+          href: '#',
+          name: 'Вручную'
+        },
+        {
+          href: '#',
+          name: 'Дневной свет'
+        },
+        {
+          href: '#',
+          name: 'Вечерний свет'
+        },
+        {
+          href: '#',
+          name: 'Рассвет'
+        },
+      ] %}
+      {% include 'components/c-badges/c-badges.twig' %}
+    </div>
 
-    {% include 'forms/f-range/f-range.twig' with {class: 'm-light__range', type: 'light'} %}
+    <div class="m-light__range-container">
+      {% include 'forms/f-range/f-range.twig' with {class: 'm-light__range', type: 'light'} %}
+    </div>
   </div>
 {% endblock%}

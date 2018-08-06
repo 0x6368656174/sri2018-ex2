@@ -28,13 +28,13 @@
     url('../../assets/icons/sun--max@2x.png') 2x
   ),
     linear-gradient(to right, rgba(255, 232, 140, 1) 0%, rgba(255, 177, 0, 1) 100%);
-  background-position: rem(15px) rem(13px), right rem(15px) top rem(13px), right;
+  background-position: rem(15px) rem(12px), right rem(15px) top rem(12px), right;
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-size: rem(36px), rem(36px), auto;
-
   border-radius: rem(30px);
   height: rem(60px);
   position: relative;
+  width: 100%;
 
   /* stylelint-disable-next-line */
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -58,7 +58,7 @@
   &::-webkit-slider-thumb {
     @include thumb;
     appearance: none;
-    margin-top: -4px;
+    margin-top: rem(-4px);
   }
 
   &::-moz-range-thumb {

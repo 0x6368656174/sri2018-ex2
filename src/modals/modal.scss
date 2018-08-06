@@ -68,10 +68,13 @@
   &__popup {
     background-color: #fff;
     border-radius: rem(20px);
+    display: flex;
+    flex-direction: column;
     height: 100%;
   }
 
   &__title {
+    margin-bottom: rem(15px);
     margin-left: rem(20px);
     margin-right: rem(20px);
     margin-top: rem(21px);

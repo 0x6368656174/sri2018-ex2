@@ -3,13 +3,16 @@
 @import '../../scss/const';
 
 .c-badges {
+  height: rem(30px);
   overflow-x: scroll;
 
   &__list {
     display: inline-flex;
     list-style: none;
+    margin-bottom: 0;
     margin-left: rem(20px);
     margin-right: rem(20px);
+    margin-top: 0;
     padding: 0;
   }
 

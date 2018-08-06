@@ -12,7 +12,8 @@
   "author": "Pavel Puchkov <0x6368656174@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "mobile-select": "^1.1.2"
+    "mobile-select": "^1.1.2",
+    "resize-observer-polyfill": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.55",
