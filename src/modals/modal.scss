@@ -22,11 +22,11 @@
   /* stylelint-disable-next-line */
   @include is-firefox {
     &--modal-visible {
-      background-color: rgba($color-black, 0.8);
+      background-color: rgba($color-black, 0.8) !important;
     }
 
     &__static-content--modal-visible {
-      filter: none;
+      filter: none !important;
     }
   }
 
