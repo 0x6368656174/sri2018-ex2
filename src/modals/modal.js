@@ -35,6 +35,7 @@ export class Modal {
          `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${this._elementTop})`;
        setTimeout(() => {
          this._modal.classList.remove('modal--visible');
+         this._staticContent.setAttribute('aria-hidden', 'false');
        }, 200);
      } else {
        this._modal.classList.remove('modal--visible');
@@ -52,6 +53,7 @@ export class Modal {
     const widthScale = this._elementWidth / window.screen.width;
     const heightScale = this._elementHeight / window.screen.height;
 
+    this._staticContent.setAttribute('aria-hidden', 'true');
     this._modal.classList.add('modal--visible');
     this._modalContent.classList.add('modal__content--transition-disabled');
     this._modalContent.style.transform =
@@ -62,6 +64,6 @@ export class Modal {
       this._modalContent.classList.remove('modal__content--transition-disabled');
       this._modalContent.classList.add('modal__content--visible');
       this._modalContent.style.transform = 'matrix(1, 0, 0, 1, 0, 0)';
-    }, 100);
+    }, 50);
   }
 }

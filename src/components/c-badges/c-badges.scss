@@ -1,0 +1,42 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.c-badges {
+  overflow-x: scroll;
+
+  &__list {
+    display: inline-flex;
+    list-style: none;
+    margin-left: rem(20px);
+    margin-right: rem(20px);
+    padding: 0;
+  }
+
+  &__badge {
+    align-items: center;
+    background-color: $color-light-gray;
+    border-radius: rem(20px);
+    display: flex;
+    font-size: rem(13px);
+    height: rem(30px);
+    justify-content: center;
+    margin-right: rem(10px);
+    padding-left: rem(15px);
+    padding-right: rem(15px);
+    white-space: nowrap;
+
+    &:nth-last-of-type(1) {
+      margin-right: 0;
+    }
+
+    &--active {
+      background-color: $color-yellow;
+    }
+  }
+
+  &__badge-link {
+    color: #000;
+    text-decoration: none;
+  }
+}

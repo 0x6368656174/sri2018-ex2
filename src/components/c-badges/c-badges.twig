@@ -1,0 +1,9 @@
+<div class="c-badges">
+  <ul class="c-badges__list">
+    {% for badge in badges %}
+      <li class="c-badges__badge {{ loop.first ? 'c-badges__badge--active' }}">
+        <a class="c-badges__badge-link" href="{{ badge.href }}">{{ badge.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+{% extends 'modals/modal.twig' %}
+
+{% set title = 'Xiaomi Yeelight LED Smart Bulb' %}
+{% set description = 'Включится в 17:00' %}
+{% set id = 'm-light' %}
+
+{% block content %}
+  <div class="m-light">
+    {% set badges = [
+      {
+        href: '#',
+        name: 'Вручную'
+      },
+      {
+        href: '#',
+        name: 'Дневной свет'
+      },
+      {
+        href: '#',
+        name: 'Вечерний свет'
+      },
+      {
+        href: '#',
+        name: 'Рассвет'
+      },
+    ] %}
+    {% include 'components/c-badges/c-badges.twig' %}
+  </div>
+{% endblock%}

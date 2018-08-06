@@ -1,4 +1,4 @@
-import {mBrightness} from '../../modals/m-brightness/m-brightness';
+import {mLight} from '../../modals/m-light/m-light';
 
 const tiles = document.querySelectorAll('.c-tile');
 
@@ -6,8 +6,8 @@ tiles.forEach(tile => {
   const {type} = tile.dataset;
 
   tile.addEventListener('click', () => {
-    if (type === 'brightness') {
-      mBrightness.showFrom(tile);
+    if (type === 'light') {
+      mLight.showFrom(tile);
     }
   });
 });
