@@ -19,6 +19,7 @@
   // К сожалению, FireFox неверно обрабатывает position: fixed в елементе с filter
   // (https://bugzilla.mozilla.org/show_bug.cgi?id=1426919)
   // поэтому блюра не будет, и поэтому сделаем фон чутка более темным, чтоб выглядело получше
+  /* stylelint-disable-next-line */
   @include is-firefox {
     &--modal-visible {
       background-color: rgba($color-black, 0.8);
