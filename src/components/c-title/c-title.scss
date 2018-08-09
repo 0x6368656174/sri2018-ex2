@@ -4,21 +4,27 @@
 
 .c-title {
   &__header {
+    color: $color-black;
     font-size: rem(18px);
     font-weight: bold;
     margin: 0;
 
     &--level-h2 {
+      font-size: rem(18px);
+    }
+
+    &--level-h3 {
       font-size: rem(14px);
     }
   }
 
   &__description {
+    color: $color-black;
     font-size: rem(12px);
     margin-bottom: 0;
     margin-top: rem(5px);
 
-    &--level-h2 {
+    &--level-h3 {
       color: $color-gray;
     }
   }

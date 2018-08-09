@@ -25,44 +25,52 @@
       {% include '/components/c-header/c-header.twig' %}
     </div>
 
-    <div class="p-home__main">
-      {% include 'components/c-main/c-main.twig' %}
-    </div>
+    <div class="p-home__first-row">
+      <section class="p-home__main">
+        {% include '/components/c-title/c-title.twig' with {
+          level: 'h2',
+          title: 'Главное',
+          class: 'p-home__main-title'
+        } %}
 
-    <div class="p-home__favorite-scripts">
-      {% set scripts = [
-        {
-          icon: 'sun--orange',
-          title: 'Выключить весь свет в доме и во дворе',
-          dialogType: 'light',
-        },
-        {
-          icon: 'clock',
-          title: 'Я ухожу',
-        },
-        {
-          icon: 'sun--orange',
-          title: 'Включить свет в коридоре',
-          dialogType: 'light',
-        },
-        {
-          icon: 'temperature--orange',
-          title: 'Набрать горячую ванну',
-          description: 'Начнётся в 18:00',
-          dialogType: 'temp',
-        },
-        {
-          icon: 'temperature--orange',
-          title: 'Сделать пол тёплым во всей квартире',
-          dialogType: 'temp',
-        },
-      ] %}
+        {% include 'components/c-main/c-main.twig' %}
+      </section>
 
-      {% include 'components/c-tile-list/c-tile-list.twig' with {
-        title: 'Избранные сценарии',
-        style: 'low',
-        tiles: scripts,
-      } %}
+      <div class="p-home__favorite-scripts">
+        {% set scripts = [
+          {
+            icon: 'sun--orange',
+            title: 'Выключить весь свет в доме и во дворе',
+            dialogType: 'light',
+          },
+          {
+            icon: 'clock',
+            title: 'Я ухожу',
+          },
+          {
+            icon: 'sun--orange',
+            title: 'Включить свет в коридоре',
+            dialogType: 'light',
+          },
+          {
+            icon: 'temperature--orange',
+            title: 'Набрать горячую ванну',
+            description: 'Начнётся в 18:00',
+            dialogType: 'temp',
+          },
+          {
+            icon: 'temperature--orange',
+            title: 'Сделать пол тёплым во всей квартире',
+            dialogType: 'temp',
+          },
+        ] %}
+
+        {% include 'components/c-tile-list/c-tile-list.twig' with {
+          title: 'Избранные сценарии',
+          style: 'low',
+          tiles: scripts,
+        } %}
+      </div>
     </div>
 
     <div class="p-home__favorite-devices">

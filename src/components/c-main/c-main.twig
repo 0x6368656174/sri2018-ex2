@@ -1,6 +1,7 @@
 <section class="c-main">
   <div class="c-main__text-content">
     {% include 'components/c-title/c-title.twig' with {
+      level: 'h1',
       title: 'Привет, Геннадий!',
       description: 'Двери и окна закрыты, сигнализация включена.',
       class: 'c-main__header'
@@ -61,6 +62,12 @@
         </li>
       {% endfor %}
     </ul>
+
+    <button class="c-main__favorite-scripts-move-top" aria-label="Перемотать вверх">
+      {% include 'components/c-icon/c-icon.twig' with {
+        icon: 'double-arrow--top'
+      } %}
+    </button>
   </div>
 
 </section>

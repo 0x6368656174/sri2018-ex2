@@ -22,15 +22,21 @@ module.exports = (mode, serve) => {
 
   const context = path.join(process.cwd(), 'src');
 
-  const breakpointRx = /[^\.]+\.(min-(\d+)_max-(\d+)).scss$/;
+  const breakpointRx = /[^\.]+\.((min-(\d+))?_?(max-(\d+))?).scss$/;
 
   const scssFiles = glob.sync(`${context}/**/*.scss`);
   const breakpoints = {};
   for (const scssFile of scssFiles) {
     const name = path.basename(scssFile).toLowerCase();
-    const match = name.match(breakpointRx);
+    let match = name.match(breakpointRx);
     if (match) {
-      breakpoints[match[1]] = `only screen and (min-device-width: ${match[2]}px) and (max-device-width: ${match[3]}px)`;
+      if (match[3] && match[5]) {
+        breakpoints[match[1]] = `only screen and (min-width: ${match[3]}px) and (max-width: ${match[5]}px)`;
+      } else if (match[3]) {
+        breakpoints[match[1]] = `only screen and (min-width: ${match[3]}px)`;
+      } else if (match[5]) {
+        breakpoints[match[1]] = `only screen and (max-width: ${match[5]}px)`;
+      }
     }
   }
 

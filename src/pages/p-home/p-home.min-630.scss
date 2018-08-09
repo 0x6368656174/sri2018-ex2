@@ -1,0 +1,27 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.p-home {
+  &__first-row {
+    display: flex;
+    width: 100%;
+  }
+
+  &__main-title {
+    color: $color-black;
+    display: block;
+    font-size: rem(18px);
+    margin-bottom: rem(20px);
+    margin-top: 0;
+  }
+
+  &__main {
+    height: rem(331px);
+    width: 100%;
+  }
+
+  &__favorite-scripts {
+    width: rem(200px);
+  }
+}

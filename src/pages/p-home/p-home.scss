@@ -24,6 +24,10 @@ html {
     padding-right: rem(20px);
   }
 
+  &__main-title {
+    display: none;
+  }
+
   &__favorite-scripts {
     margin-bottom: rem(27px);
   }

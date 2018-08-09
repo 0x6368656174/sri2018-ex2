@@ -1,0 +1,67 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.c-main {
+  display: flex;
+  height: 100%;
+  padding-bottom: 0;
+
+  &__text-content {
+    padding: 25px;
+  }
+
+  &__temperatures {
+    margin-top: rem(25px);
+  }
+
+  &__temperature-location {
+    font-size: rem(14px);
+  }
+
+  &__temperature-value {
+    font-size: rem(36px);
+  }
+
+  &__temperature-icon {
+    height: rem(26px);
+    width: rem(26px);
+  }
+
+  &__favorite-scripts-container {
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: rem(20px);
+    margin-top: rem(20px);
+    min-width: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 200px;
+  }
+
+  &__favorite-scripts {
+    flex-direction: column;
+    margin: 0;
+    position: relative;
+    top: 0;
+    transition: top 0.2s ease-out;
+  }
+
+  &__favorite-script {
+    margin-bottom: rem(15px);
+    margin-right: 0;
+  }
+
+  &__favorite-scripts-move-top {
+    background-color: $color-light-gray;
+    border-style: none;
+    border-top-left-radius: rem(20px);
+    border-top-right-radius: rem(20px);
+    bottom: 0;
+    font-family: $font-arial;
+    height: rem(41px);
+    padding: 0;
+    position: absolute;
+    width: rem(200px);
+  }
+}

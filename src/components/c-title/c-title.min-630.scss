@@ -1,0 +1,17 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.c-title {
+  &__header {
+    &--level-h1 {
+      font-size: rem(27px);
+    }
+  }
+
+  &__description {
+    &--level-h1 {
+      font-size: rem(14px);
+    }
+  }
+}
