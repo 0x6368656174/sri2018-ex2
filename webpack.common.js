@@ -20,6 +20,20 @@ module.exports = (mode, serve) => {
     return main.paths;
   }
 
+  const context = path.join(process.cwd(), 'src');
+
+  const breakpointRx = /[^\.]+\.(min-(\d+)_max-(\d+)).scss$/;
+
+  const scssFiles = glob.sync(`${context}/**/*.scss`);
+  const breakpoints = {};
+  for (const scssFile of scssFiles) {
+    const name = path.basename(scssFile).toLowerCase();
+    const match = name.match(breakpointRx);
+    if (match) {
+      breakpoints[match[1]] = `only screen and (min-device-width: ${match[2]}px) and (max-device-width: ${match[3]}px)`;
+    }
+  }
+
   const extractTwigPlugin = new ExtractTextPlugin({
     filename: '[name].html',
   });
@@ -28,7 +42,9 @@ module.exports = (mode, serve) => {
     filename: '[name].css',
   });
 
-  const suppressChunksPlugin = new SuppressChunksPlugin();
+  const suppressChunksPlugin = new SuppressChunksPlugin({
+    breakpoints,
+  });
 
   const postCssCssNextPlugins = [
     PostCssPresetEnv,
@@ -38,8 +54,48 @@ module.exports = (mode, serve) => {
     postCssCssNextPlugins.push(cssnano({autoprefixer: false}));
   }
 
+  const splitChunksCacheGroups = {
+    style: {
+      chunks: 'all',
+      enforce: true,
+      name: 'style',
+      test: m => {
+        if (m.constructor.name !== 'CssModule') {
+          return false;
+        }
 
-  const context = path.join(process.cwd(), 'src');
+        const fileName = m.issuer.resource.toLowerCase();
+        const match = fileName.match(breakpointRx);
+        return !match;
+      }
+    },
+  };
+
+  for (const breakpoint in breakpoints) {
+    if (!breakpoints.hasOwnProperty(breakpoint)) {
+      continue;
+    }
+
+    splitChunksCacheGroups[breakpoint] = {
+      chunks: 'all',
+      enforce: true,
+      name: `style.${breakpoint}`,
+      test: m => {
+        if (m.constructor.name !== 'CssModule') {
+          return false;
+        }
+
+        const fileName = m.issuer.resource.toLowerCase();
+        const match = fileName.match(breakpointRx);
+        if (!match) {
+          return false;
+        }
+
+        return match[1] === breakpoint;
+      }
+    }
+  }
+
   return {
     mode: 'development',
     devtool: mode !== 'production' ? 'inline-source-map' : false,
@@ -62,9 +118,9 @@ module.exports = (mode, serve) => {
             files.push(jsFile);
           }
 
-          // Добавим SCSS файл
-          const scssFile = path.join(context, `${entryName}.scss`);
-          if (fs.existsSync(scssFile)) {
+          // Добавим SCSS файлы
+          const scssFiles = glob.sync(path.join(context, `${entryName}*.scss`));
+          for (const scssFile of scssFiles) {
             files.push(scssFile);
           }
 
@@ -107,6 +163,7 @@ module.exports = (mode, serve) => {
                 options: {
                   serve,
                   servePort: 4200,
+                  breakpoints,
                 },
               },
             ],
@@ -172,14 +229,7 @@ module.exports = (mode, serve) => {
     optimization: {
       runtimeChunk: 'single',
       splitChunks: {
-        cacheGroups: {
-          style: {
-            chunks: 'all',
-            enforce: true,
-            name: 'style',
-            test: m => m.constructor.name === 'CssModule',
-          },
-        },
+        cacheGroups: splitChunksCacheGroups,
       },
     },
     output: {

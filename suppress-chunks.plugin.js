@@ -2,10 +2,23 @@ const path = require('path');
 const fs = require('fs');
 
 module.exports = class SuppressChunksPlugin {
+  constructor(options) {
+    this.breakpoints = options.breakpoints;
+  }
+
   apply(compiler) {
     const context = path.join(process.cwd(), 'src');
 
     const skipChunkNames = ['style', 'vendors', 'commons', 'runtime'];
+
+    // Добавим брейкпоинты
+    for (const breakpoint in this.breakpoints) {
+      if (!this.breakpoints.hasOwnProperty(breakpoint)) {
+        continue;
+      }
+
+      skipChunkNames.push(`style.${breakpoint}`);
+    }
 
     compiler.hooks.shouldEmit.tap('SuppressChunksPlugin', compilation => {
       for (const chunk of compilation.chunks) {
