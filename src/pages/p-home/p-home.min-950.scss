@@ -18,10 +18,12 @@
 
   &__main {
     height: rem(331px);
+    margin-left: rem(40px);
+    margin-right: rem(26px);
     width: 100%;
   }
 
   &__favorite-scripts {
-    width: rem(200px);
+    margin-right: rem(40px);
   }
 }

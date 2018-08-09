@@ -11,6 +11,11 @@
   padding: 0;
   width: rem(200px);
 
+  &:hover {
+    background-color: #fff;
+    box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.5);
+  }
+
   &__content {
     display: flex;
     flex-direction: column;

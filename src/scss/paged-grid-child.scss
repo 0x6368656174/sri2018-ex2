@@ -1,0 +1,20 @@
+@mixin paged-grid-child($columns, $rows, $max: 100) {
+  $per-page: $columns * $rows;
+  @for $item from 1 through $max {
+    $index-on-page: $item % $per-page;
+    @if $index-on-page == 0 {
+      $index-on-page: $per-page;
+    }
+    $page: ($item - $index-on-page) / $per-page;
+    $column: $index-on-page % $columns;
+    @if $column == 0 {
+      $column: $columns;
+    }
+    $row: ($index-on-page - 1 - ($index-on-page - 1) % ($columns)) / $columns + 1;
+
+    &:nth-child(#{$item}) {
+      grid-column: $page * $columns + $column;
+      grid-row: $row;
+    }
+  }
+}

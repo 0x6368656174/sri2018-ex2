@@ -4,46 +4,39 @@ const moveScriptsTopButton = document.querySelector('.c-main__favorite-scripts-m
 const scripts = document.querySelector('.c-main__favorite-scripts');
 const scriptElements = document.querySelectorAll('.c-main__favorite-script');
 
-console.log(moveScriptsTopButton, scripts);
-
-let listener;
 let currentVisibleScript = 0;
 
 function showScriptsFrom(index) {
   for (let i = 0; i < scriptElements.length; ++i) {
     const script = scriptElements[i];
-    console.log(script);
     if (i < index || i > index + 1) {
       setTimeout(() => {
         script.style.visibility = 'hidden';
       }, 200);
     } else {
-      script.style.visibility = 'visible';
+      script.style.visibility = null;
     }
   }
 
   scripts.style.top = `${index * -135}px`;
 }
 
+function moveScripts() {
+  currentVisibleScript++;
+  showScriptsFrom(currentVisibleScript);
+}
+
 function desktopMediaListener(event) {
   if (event.matches) {
-    if (!listener) {
-      currentVisibleScript = 0;
-      showScriptsFrom(currentVisibleScript);
+    currentVisibleScript = 0;
+    showScriptsFrom(currentVisibleScript);
 
-      listener = moveScriptsTopButton.addEventListener('click', () => {
-        currentVisibleScript++;
-        showScriptsFrom(currentVisibleScript);
-      });
-    }
+    moveScriptsTopButton.addEventListener('click', moveScripts);
   } else {
-    if (listener) {
-      moveScriptsTopButton.removeEventListener('click', listener);
-      listener = null;
-      scripts.style.top = null;
-      for (const script of scriptElements) {
-        script.setAttribute('tabindex', 0);
-      }
+    moveScriptsTopButton.removeEventListener('click', moveScripts);
+    scripts.style.top = null;
+    for (const script of scriptElements) {
+      script.style.visibility = null;
     }
   }
 }

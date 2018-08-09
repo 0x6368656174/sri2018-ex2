@@ -1,5 +1,5 @@
-<section class="c-tile-list">
-  <div class="c-tile-list__title {{ filters ? 'c-tile-list__title--with-filters' }}">
+<section class="c-tile-list {{ grid ? 'c-tile-list--grid' }}">
+  <div class="c-tile-list__title {{ filters ? 'c-tile-list__title--with-filters' }} {{ grid ? 'c-tile-list__title--grid' }}">
     {% include 'components/c-title/c-title.twig' with {
       level: 'h2',
       title: title,
@@ -15,17 +15,22 @@
         {% endfor %}
       </ul>
     {% endif %}
+
+    <button class="c-tile-list__page-button c-tile-list__page-button--prev" aria-label="Показать предыдущую страницу">
+    </button>
+    <button class="c-tile-list__page-button c-tile-list__page-button--next" aria-label="Показать следующую страницу">
+    </button>
   </div>
 
 
-  <div class="c-tile-list__tiles-container">
-    <ul class="c-tile-list__tiles">
+  <div class="c-tile-list__tiles-container {{ grid ? 'c-tile-list__tiles-container--grid' }}">
+    <ul class="c-tile-list__tiles {{ grid ? 'c-tile-list__tiles--grid' }}">
       {% for tile in tiles %}
         {% set data = '' %}
         {% for paramKey, paramValue in tile.param %}
           {% set data = data ~ 'data-' ~ paramKey ~ '="' ~paramValue ~ '" ' %}
         {% endfor %}
-        <li class="c-tile-list__tile" {{ data }}>
+        <li class="c-tile-list__tile {{ grid ? 'c-tile-list__tile--grid' }}" {{ data }}>
           {% include 'components/c-tile/c-tile.twig' with {
             icon: tile.icon,
             title: tile.title,

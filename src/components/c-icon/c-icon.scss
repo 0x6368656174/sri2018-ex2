@@ -1,6 +1,10 @@
 .c-icon {
   display: inline-block;
 
+  &--rotate-180 {
+    transform: rotate(180deg);
+  }
+
   &__image {
     display: block;
     height: 100%;

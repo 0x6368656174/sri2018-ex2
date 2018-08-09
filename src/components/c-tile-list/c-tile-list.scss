@@ -65,7 +65,7 @@
     }
 
     &--active::after {
-      @include responsive-background-image(arrow--down);
+      @include responsive-background-image(icons/arrow--down);
       background-size: rem(12px) rem(12px);
       content: '';
       display: inline-block;
@@ -73,5 +73,9 @@
       margin-left: rem(4px);
       width: rem(12px);
     }
+  }
+
+  &__page-button {
+    display: none;
   }
 }

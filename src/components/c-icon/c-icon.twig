@@ -21,10 +21,27 @@
   {% set alt = 'оранжевое солнце' %}
 {% elseif icon == 'double-arrow--top' %}
   {% set fileName = icon %}
-  {% set alt = 'стрелка вверх' %}
+  {% set alt = 'двойная стрелка вверх' %}
+{% elseif icon == 'arrow--down' %}
+  {% set fileName = icon %}
+  {% set alt = 'стрелка вниз' %}
+{% elseif icon == 'arrow--left' %}
+  {% set fileName = icon %}
+  {% set alt = 'стрелка влево' %}
+{% elseif icon == 'arrow--left-active' %}
+  {% set fileName = icon %}
+  {% set alt = 'активная стрелка влево' %}
+{% elseif icon == 'arrow--right' %}
+  {% set fileName = 'arrow--left' %}
+  {% set rotate = '180' %}
+  {% set alt = 'стрелка вправо' %}
+{% elseif icon == 'arrow--right-active' %}
+  {% set fileName = 'arrow--left-active' %}
+  {% set rotate = '180' %}
+  {% set alt = 'активная стрелка вправо' %}
 {% endif %}
 
-<snap class="c-icon c-icon--{{ icon }} {{ class }}">
+<snap class="c-icon c-icon--{{ icon }} {{ rotate ? 'c-icon--rotate-' ~ rotate }} {{ class }}">
   {% include 'components/c-image/c-image.twig' with {
     fileName: 'icons/' ~ fileName,
     alt: alt,

@@ -1,0 +1,14 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+@import '../../scss/paged-grid-child';
+
+.c-tile-list {
+  &--grid {
+    width: rem(845px);
+  }
+
+  &__tile--grid {
+    @include paged-grid-child(4, 3);
+  }
+}

@@ -1,0 +1,73 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+@import '../../scss/paged-grid-child';
+@import '../../scss/responsieve-background-image';
+
+.c-tile-list {
+  &--grid {
+    width: rem(415px);
+  }
+
+  &__title {
+    margin-right: 0;
+
+    &--grid {
+      margin-left: 0;
+    }
+  }
+
+  &__tiles-container {
+    margin: -15px;
+    overflow: hidden;
+    padding: 15px;
+    width: initial;
+  }
+
+  &__tiles {
+    margin: 0;
+
+    &--grid {
+      display: grid;
+      grid-gap: rem(15px) rem(15px);
+      left: 0;
+      position: relative;
+      transition: left 0.2s ease-out;
+    }
+  }
+
+  &__tile {
+    &--grid {
+      margin-right: 0;
+    }
+  }
+
+  &__tile--grid {
+    @include paged-grid-child(2, 3);
+  }
+
+  &__page-button {
+    @include responsive-background-image(icons/arrow--left-active);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: rem(9px) rem(14px);
+    border-style: none;
+    display: block;
+    height: rem(18px);
+    width: rem(18px);
+
+    &[disabled] {
+      @include responsive-background-image(icons/arrow--left);
+    }
+
+    &--prev {
+      margin-left: auto;
+      margin-right: rem(10px);
+    }
+
+    &--next {
+      transform: rotate(180deg);
+    }
+  }
+}
