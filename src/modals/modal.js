@@ -40,8 +40,9 @@ export class Modal {
       this._modal.classList.remove('modal--modal-visible');
       this._staticContent.classList.remove('modal__static-content--modal-visible');
       this._modalWrapper.classList.remove('modal__wrapper--visible');
-      this._modalWrapper.style.transform =
-        `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${this._elementTop})`;
+      this._modalWrapper.style.transform = `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${
+        this._elementTop
+      })`;
       setTimeout(() => {
         this._modal.classList.remove('modal--visible');
         this._staticContent.setAttribute('aria-hidden', 'false');
@@ -70,8 +71,9 @@ export class Modal {
     this._staticContent.setAttribute('aria-hidden', 'true');
     this._modal.classList.add('modal--visible');
     this._modalWrapper.classList.add('modal__wrapper--transition-disabled');
-    this._modalWrapper.style.transform =
-      `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${this._elementTop})`;
+    this._modalWrapper.style.transform = `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${
+      this._elementTop
+    })`;
     setTimeout(() => {
       this._modal.classList.add('modal--modal-visible');
       this._staticContent.classList.add('modal__static-content--modal-visible');

@@ -5,18 +5,13 @@ ThumbControllers.CircularSlider = function(options) {
 
   let width = 200;
 
-
   let width2 = 100;
-
 
   let color1 = '#666';
 
-
   let color2 = '#333';
 
-
   let color3 = '#111';
-
 
   let onChange = null;
 
@@ -55,21 +50,15 @@ ThumbControllers.CircularSlider = function(options) {
 
   const container = document.createElement('div');
 
-
   const ns = 'http://www.w3.org/2000/svg';
-
 
   const svg = document.createElementNS(ns, 'svg');
 
-
   const ramp = document.createElementNS(ns, 'circle');
-
 
   const progress = document.createElementNS(ns, 'circle');
 
-
   const innerCircle = document.createElementNS(ns, 'circle');
-
 
   const text = document.createElement('p');
 
@@ -186,7 +175,7 @@ ThumbControllers.CircularSlider = function(options) {
 
     computeValue(value);
 
-    const offset = (value * 2 * Math.PI + Math.PI / 2) * 100 / (2 * Math.PI);
+    const offset = ((value * 2 * Math.PI + Math.PI / 2) * 100) / (2 * Math.PI);
 
     progress.setAttribute('stroke-dashoffset', offset.toString());
 
@@ -221,7 +210,8 @@ ThumbControllers.CircularSlider = function(options) {
 
         m++;
 
-        if (m > 5) {// Not much sense to go further of even 2 actually.. ?
+        if (m > 5) {
+          // Not much sense to go further of even 2 actually.. ?
           val = parseInt(val);
 
           step = parseInt(step);
@@ -229,7 +219,7 @@ ThumbControllers.CircularSlider = function(options) {
       }
     }
 
-    value = (val - val % step) / Math.pow(10, m);
+    value = (val - (val % step)) / Math.pow(10, m);
 
     that.value = value;
   }

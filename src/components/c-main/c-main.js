@@ -31,8 +31,10 @@ function showScriptsFrom(index) {
  */
 function moveScripts() {
   if (currentVisibleScript + 3 > scriptElements.length) {
-    alert('К сожалению, кнопки вниз дизайном не предусмотрено, поэтому дальше мотать не будет, чтоб не получилось'
-    + ' снизу дырки.');
+    alert(
+      'К сожалению, кнопки вниз дизайном не предусмотрено, поэтому дальше мотать не будет, чтоб не получилось' +
+        ' снизу дырки.',
+    );
     return;
   }
   currentVisibleScript++;

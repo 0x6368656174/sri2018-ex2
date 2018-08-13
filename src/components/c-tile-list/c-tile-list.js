@@ -300,8 +300,8 @@ function hideInvisibleTiles(tilesContainer, tiles, clientWidth, margin = 40) {
  * @return {boolean}
  */
 function hasNextTilesPage(tilesContainer, tiles, clientWidth) {
-    // Найдем первую плашку следующей страницы
-  return !! findNextPageFirstTile(tilesContainer, tiles, clientWidth);
+  // Найдем первую плашку следующей страницы
+  return !!findNextPageFirstTile(tilesContainer, tiles, clientWidth);
 }
 
 /**
@@ -315,7 +315,7 @@ function hasNextTilesPage(tilesContainer, tiles, clientWidth) {
  */
 function hasPrevTilesPage(tilesContainer, tiles, clientWidth) {
   // Найдем первую плашку следующей страницы
-  return !! findPrevPageFirstTile(tilesContainer, tiles, clientWidth);
+  return !!findPrevPageFirstTile(tilesContainer, tiles, clientWidth);
 }
 
 /**

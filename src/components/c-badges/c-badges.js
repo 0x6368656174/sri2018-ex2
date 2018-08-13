@@ -6,17 +6,16 @@
  * @return {{id, value}[]}
  */
 export function getOptions(badgesBlock) {
-  return Array.from(badgesBlock.querySelectorAll('.c-badges__badge-button'))
-    .map(badge => {
-      const {param, value} = badge.dataset;
-      return {
-        id: {
-          param,
-          value,
-        },
-        value: badge.innerHTML,
-      };
-    });
+  return Array.from(badgesBlock.querySelectorAll('.c-badges__badge-button')).map(badge => {
+    const {param, value} = badge.dataset;
+    return {
+      id: {
+        param,
+        value,
+      },
+      value: badge.innerHTML,
+    };
+  });
 }
 
 /**

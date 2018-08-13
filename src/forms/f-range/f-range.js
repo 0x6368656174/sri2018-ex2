@@ -6,11 +6,15 @@
  */
 export function setOrientation(range, orientation) {
   switch (orientation) {
-    case 'horizontal': {
-      range.classList.remove('f-range--orientation-vertical');
-    } break;
-    case 'vertical': {
-      range.classList.add('f-range--orientation-vertical');
-    } break;
+    case 'horizontal':
+      {
+        range.classList.remove('f-range--orientation-vertical');
+      }
+      break;
+    case 'vertical':
+      {
+        range.classList.add('f-range--orientation-vertical');
+      }
+      break;
   }
 }

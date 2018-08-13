@@ -5,7 +5,7 @@
     "git add"
   ],
   "src/**/*.js": [
-    "prettier",
+    "prettier --write",
     "eslint --fix",
     "git add"
   ]

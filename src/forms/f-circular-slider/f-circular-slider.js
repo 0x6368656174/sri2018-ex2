@@ -19,8 +19,7 @@ for (const circularSliderBlock of circularSliderBlocks) {
     },
   });
 
-  slider.setValue( 33 );
+  slider.setValue(33);
 
-  circularSliderBlock.appendChild( slider.el );
+  circularSliderBlock.appendChild(slider.el);
 }
-
