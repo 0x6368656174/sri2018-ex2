@@ -1,0 +1,17 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.m-temp {
+  &__title-icon-container {
+    color: $color-black;
+    display: flex;
+    font-size: rem(36px);
+    font-weight: bold;
+  }
+
+  &__title-icon {
+    height: rem(42px);
+    width: rem(42px);
+  }
+}

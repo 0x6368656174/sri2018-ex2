@@ -1,0 +1,42 @@
+@import '~sass-rem';
+
+@import '../scss/const';
+
+.modal {
+  &--visible {
+    display: flex;
+  }
+
+  &__content {
+    height: auto;
+    width: 630px;
+  }
+
+  &__title {
+    margin-bottom: rem(20px);
+    margin-left: rem(25px);
+    margin-right: rem(25px);
+    margin-top: rem(25px);
+  }
+
+  &__title-icon {
+    display: block;
+    margin-left: auto;
+  }
+
+  &__buttons {
+    flex-direction: row;
+    margin-top: rem(20px);
+    min-height: initial;
+  }
+
+  &__button {
+    margin-bottom: 0;
+    margin-right: rem(16px);
+    width: 100%;
+
+    &:nth-last-of-type(1) {
+      margin-right: 0;
+    }
+  }
+}

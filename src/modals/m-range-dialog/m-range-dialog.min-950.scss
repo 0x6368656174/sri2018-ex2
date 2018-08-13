@@ -1,0 +1,13 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.m-range-dialog {
+  &__badges {
+    margin-bottom: rem(25px);
+  }
+
+  &__range-container {
+    margin-bottom: rem(25px);
+  }
+}

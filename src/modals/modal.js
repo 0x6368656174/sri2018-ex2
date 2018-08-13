@@ -5,7 +5,7 @@ export class Modal {
       throw new Error(`Not found modal with id=${id}`);
     }
 
-    this._modalContent = this._modal.querySelector('.modal__content');
+    this._modalWrapper = this._modal.querySelector('.modal__wrapper');
     this._staticContent = document.querySelector('.modal__static-content');
 
     const buttons = this._modal.querySelectorAll('.modal__button');
@@ -30,8 +30,8 @@ export class Modal {
 
        this._modal.classList.remove('modal--modal-visible');
        this._staticContent.classList.remove('modal__static-content--modal-visible');
-       this._modalContent.classList.remove('modal__content--visible');
-       this._modalContent.style.transform =
+       this._modalWrapper.classList.remove('modal__wrapper--visible');
+       this._modalWrapper.style.transform =
          `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${this._elementTop})`;
        setTimeout(() => {
          this._modal.classList.remove('modal--visible');
@@ -55,15 +55,15 @@ export class Modal {
 
     this._staticContent.setAttribute('aria-hidden', 'true');
     this._modal.classList.add('modal--visible');
-    this._modalContent.classList.add('modal__content--transition-disabled');
-    this._modalContent.style.transform =
+    this._modalWrapper.classList.add('modal__wrapper--transition-disabled');
+    this._modalWrapper.style.transform =
       `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${this._elementTop})`;
     setTimeout(() => {
       this._modal.classList.add('modal--modal-visible');
       this._staticContent.classList.add('modal__static-content--modal-visible');
-      this._modalContent.classList.remove('modal__content--transition-disabled');
-      this._modalContent.classList.add('modal__content--visible');
-      this._modalContent.style.transform = 'matrix(1, 0, 0, 1, 0, 0)';
+      this._modalWrapper.classList.remove('modal__wrapper--transition-disabled');
+      this._modalWrapper.classList.add('modal__wrapper--visible');
+      this._modalWrapper.style.transform = 'matrix(1, 0, 0, 1, 0, 0)';
     }, 50);
   }
 }

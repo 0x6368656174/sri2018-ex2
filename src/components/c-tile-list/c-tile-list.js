@@ -414,6 +414,7 @@ for (const tileListBlock of tileListBlocks) {
 function desktopMediaListener(event) {
   if (event.matches) {
     for (const tileListBlock of tileListBlocks) {
+      // Это десктоп версия
       if (!(tileListBlock instanceof HTMLElement)) {
         continue;
       }

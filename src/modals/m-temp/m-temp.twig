@@ -18,3 +18,13 @@
   },
 ] %}
 {% set type = 'temp' %}
+
+{% block titleIcon %}
+  <div class="m-temp__title-icon-container">
+    +23
+    {% include 'components/c-icon/c-icon.twig' with {
+      icon: 'temperature--orange',
+      class: 'm-temp__title-icon'
+    } %}
+  </div>
+{% endblock %}

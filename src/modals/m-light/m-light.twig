@@ -22,3 +22,10 @@
   },
 ] %}
 {% set type = 'light' %}
+
+{% block titleIcon %}
+  {% include 'components/c-icon/c-icon.twig' with {
+    icon: 'sun--gray',
+    class: 'm-light__title-icon'
+  } %}
+{% endblock %}

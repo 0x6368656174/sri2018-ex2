@@ -1,0 +1,10 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.m-light {
+  &__title-icon {
+    height: rem(50px);
+    width: rem(50px);
+  }
+}
