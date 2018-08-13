@@ -1,0 +1,32 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.f-circular-slider {
+  height: rem(221px);
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  width: rem(221px);
+
+  &__text {
+    color: $color-black;
+    font-size: rem(66px);
+    font-weight: bold;
+    margin: 0;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    top: 66px;
+    width: 100%;
+    z-index: 2;
+  }
+
+  &__front {
+    height: rem(221px);
+    pointer-events: none;
+    position: absolute;
+    width: rem(221px);
+    z-index: 2;
+  }
+}

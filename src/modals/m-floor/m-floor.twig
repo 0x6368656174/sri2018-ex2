@@ -1,0 +1,24 @@
+{% extends 'modals/modal.twig' %}
+
+{% set title = 'Xiaomi Warm Floor' %}
+{% set description = 'Включено' %}
+{% set id = 'm-floor' %}
+{% set type = 'floor' %}
+
+{% block titleIcon %}
+  <div class="m-floor__title-icon-container">
+    +23
+    {% include 'components/c-icon/c-icon.twig' with {
+      icon: 'temperature--orange',
+      class: 'm-floor__title-icon'
+    } %}
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="m-floor">
+    <div class="m-floor__slider">
+      {% include 'forms/f-circular-slider/f-circular-slider.twig' %}
+    </div>
+  </div>
+{% endblock%}

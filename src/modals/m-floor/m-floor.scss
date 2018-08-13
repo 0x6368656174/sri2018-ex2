@@ -1,0 +1,11 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.m-floor {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  padding-bottom: rem(25px);
+}

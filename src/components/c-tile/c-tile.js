@@ -1,5 +1,6 @@
 import {mLight} from '../../modals/m-light/m-light';
 import {mTemp} from '../../modals/m-temp/m-temp';
+import {mFloor} from '../../modals/m-floor/m-floor';
 
 const tiles = document.querySelectorAll('.c-tile');
 
@@ -15,6 +16,10 @@ tiles.forEach(tile => {
       }
       case 'temp': {
         mTemp.showFrom(tile);
+        break;
+      }
+      case 'floor': {
+        mFloor.showFrom(tile);
         break;
       }
     }
