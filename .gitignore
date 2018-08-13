@@ -7,7 +7,7 @@
 .php_cs.cache
 
 # Outputs
-/dist
+#/dist
 dist.tar.gz
 dist.zip
 dist.rar

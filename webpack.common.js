@@ -141,7 +141,6 @@ module.exports = (mode, serve) => {
       }, {});
 
       const pagesDir = path.join(context, 'pages');
-      console.log(pagesDir, files);
 
       const pages = files
         .filter(file => file.startsWith(pagesDir))
