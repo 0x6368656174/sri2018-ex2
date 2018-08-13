@@ -6,6 +6,11 @@ const scriptElements = document.querySelectorAll('.c-main__favorite-script');
 
 let currentVisibleScript = 0;
 
+/**
+ * Показывает скрипты начиная с index
+ *
+ * @param {number} index
+ */
 function showScriptsFrom(index) {
   for (let i = 0; i < scriptElements.length; ++i) {
     const script = scriptElements[i];
@@ -21,11 +26,24 @@ function showScriptsFrom(index) {
   scripts.style.top = `${index * -135}px`;
 }
 
+/**
+ * Сдвигает скрипты
+ */
 function moveScripts() {
+  if (currentVisibleScript + 3 > scriptElements.length) {
+    alert('К сожалению, кнопки вниз дизайном не предусмотрено, поэтому дальше мотать не будет, чтоб не получилось'
+    + ' снизу дырки.');
+    return;
+  }
   currentVisibleScript++;
   showScriptsFrom(currentVisibleScript);
 }
 
+/**
+ * Листенер, вызываемый при изменении сайта с десктоп на мобильную версию
+ *
+ * @param {MediaQueryList} event
+ */
 function desktopMediaListener(event) {
   if (event.matches) {
     currentVisibleScript = 0;
@@ -41,5 +59,6 @@ function desktopMediaListener(event) {
   }
 }
 
+// Добавим листенер изменения размера сайта
 desktopMedia.addListener(desktopMediaListener);
 desktopMediaListener(desktopMedia);

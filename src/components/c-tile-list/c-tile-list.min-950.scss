@@ -4,14 +4,24 @@
 @import '../../scss/paged-grid-child';
 @import '../../scss/responsieve-background-image';
 
+$columns: 2;
+$width: $columns * 200 + ($columns - 1) * 15;
+
 .c-tile-list {
+  margin: -15px;
+  overflow: hidden;
+  padding: 15px;
+  //margin-right: -40px;
+  padding-right: 0;
+  //margin-left: 0;
+
   &--grid {
-    width: rem(415px);
+    width: rem(#{$width + 45}px);
   }
 
   &__title {
     margin-left: rem(40px);
-    margin-right: 0;
+    margin-right: rem(40px);
 
     &--grid {
       margin-left: 0;
@@ -19,14 +29,13 @@
   }
 
   &__tiles {
-    margin: rem(-15px);
-    overflow: hidden;
-    padding: rem(15px);
-    width: initial;
+    overflow: visible;
+    width: auto;
 
     &--grid {
       display: grid;
       grid-gap: rem(15px) rem(15px);
+      width: rem(#{$width}px);
     }
   }
 
@@ -35,6 +44,11 @@
     margin: 0;
     position: relative;
     transition: left 0.2s ease-out;
+
+    &--grid {
+      display: grid;
+      grid-gap: rem(15px) rem(15px);
+    }
   }
 
   &__tile {
@@ -44,7 +58,7 @@
   }
 
   &__tile--grid {
-    @include paged-grid-child(2, 3);
+    @include paged-grid-child($columns, 3);
   }
 
   &__page-button {

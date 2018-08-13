@@ -261,13 +261,14 @@ function showAllTiles(tiles) {
  * @param {HTMLElement} tilesContainer Контейнер с плашками
  * @param {HTMLElement[]} tiles Плашки
  * @param {number} clientWidth Ширина области просмотра
+ * @param {number} marginRight На сколько пикселей "вылазит" контент из плашки
  */
-function hideInvisibleTiles(tilesContainer, tiles, clientWidth) {
+function hideInvisibleTiles(tilesContainer, tiles, clientWidth, marginRight = 40) {
   // Минимальное смещение, где начинают быть видны плашки
   const minOffset = getCurrentOffset(tilesContainer);
 
   // Максимально смещение, где заканчивают быть видны плашки
-  const maxOffset = minOffset + clientWidth;
+  const maxOffset = minOffset + clientWidth + marginRight;
 
   // Пройдемся по всем плашкам
   for (const tile of tiles) {
@@ -335,6 +336,7 @@ function updateNavigateButtonState(nextButton, prevButton, tilesContainer, tiles
   }
 }
 
+// Блоки "Список плашек"
 const tileListBlocks = document.querySelectorAll('.c-tile-list');
 
 /**

@@ -3,12 +3,19 @@
 @import '../../scss/const';
 @import '../../scss/paged-grid-child';
 
+$columns: 3;
+$width: $columns * 200 + ($columns - 1) * 15;
+
 .c-tile-list {
   &--grid {
-    width: rem(630px);
+    width: rem(#{$width + 45}px);
+  }
+
+  &__tiles--grid {
+    width: rem(#{$width}px);
   }
 
   &__tile--grid {
-    @include paged-grid-child(3, 3);
+    @include paged-grid-child($columns, 3);
   }
 }
