@@ -2,20 +2,16 @@
 
 @import '../../scss/const';
 
-.c-header {
-  border-bottom: 1px solid $color-hr;
-  height: rem(92px);
-  padding: 0;
+.c-footer {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  height: rem(64px);
+  left: 0;
   padding-left: rem(40px);
-
-  &__menu-button {
-    display: none;
-  }
-
-  &__menu {
-    display: block;
-    margin-left: rem(52px);
-  }
+  padding-right: rem(40px);
+  position: absolute;
+  right: 0;
 
   &__menu-list {
     display: flex;
@@ -24,7 +20,7 @@
   }
 
   &__menu-item {
-    margin-right: rem(28px);
+    margin-right: rem(18px);
 
     &:nth-last-of-type(1) {
       margin-right: 0;
@@ -33,16 +29,17 @@
 
   &__menu-link {
     color: $color-gray;
-    font-size: rem(16px);
-    font-weight: bold;
+    font-size: rem(12px);
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
     }
+  }
 
-    &--active {
-      color: $color-black;
-    }
+  &__copyright {
+    color: $color-gray;
+    font-size: rem(12px);
+    margin-left: auto;
   }
 }
