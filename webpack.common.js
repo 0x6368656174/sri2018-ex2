@@ -24,7 +24,8 @@ module.exports = (mode, serve) => {
 
   const breakpointRx = /[^\.]+\.((min-(\d+))?_?(max-(\d+))?).scss$/;
 
-  const scssFiles = glob.sync(`${context}/**/*.scss`);
+  const scssFiles = glob.sync(path.join(context,'**', '*.scss'))
+    .map(file => path.normalize(file));
   const breakpoints = {};
   for (const scssFile of scssFiles) {
     const name = path.basename(scssFile).toLowerCase();
@@ -106,7 +107,8 @@ module.exports = (mode, serve) => {
     mode: 'development',
     devtool: mode !== 'production' ? 'inline-source-map' : false,
     entry: () => {
-      const files = glob.sync(`${context}/**/*.twig`);
+      const files = glob.sync(path.join(context, '**', '*.twig'))
+        .map(file => path.normalize(file));
       const assets = files
         .map(file => {
           const relativeFile = path.relative(context, file);
@@ -125,7 +127,8 @@ module.exports = (mode, serve) => {
           }
 
           // Добавим SCSS файлы
-          const scssFiles = glob.sync(path.join(context, `${entryName}*.scss`));
+          const scssFiles = glob.sync(path.join(context, `${entryName}*.scss`))
+            .map(file => path.normalize(file));
           for (const scssFile of scssFiles) {
             files.push(scssFile);
           }
@@ -138,6 +141,7 @@ module.exports = (mode, serve) => {
       }, {});
 
       const pagesDir = path.join(context, 'pages');
+      console.log(pagesDir, files);
 
       const pages = files
         .filter(file => file.startsWith(pagesDir))

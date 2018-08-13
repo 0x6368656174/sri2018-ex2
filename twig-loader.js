@@ -25,7 +25,8 @@ module.exports = function(content) {
     },
   };
 
-  const twigs = glob.sync(path.join(context, '**/*.twig'));
+  const twigs = glob.sync(path.join(context, '**', '*.twig'))
+    .map(file => path.normalize(file));
   for (const twig of twigs) {
     this.addDependency(twig);
   }

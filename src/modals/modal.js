@@ -1,4 +1,10 @@
+/**
+ * Модальное окно
+ */
 export class Modal {
+  /**
+   * @param {string} id ID Модального окна
+   */
   constructor(id) {
     this._modal = document.getElementById(id);
     if (!this._modal) {
@@ -15,33 +21,41 @@ export class Modal {
     }
   }
 
-   hide() {
-     if (!this._modal) {
-       return;
-     }
+  /**
+   * Скрыть окно
+   */
+  hide() {
+    if (!this._modal) {
+      return;
+    }
 
-     if (!this._modal.classList.contains('modal--visible')) {
-       return;
-     }
+    if (!this._modal.classList.contains('modal--visible')) {
+      return;
+    }
 
-     if (this._elementTop && this._elementLeft && this._elementWidth && this._elementHeight) {
-       const widthScale = this._elementWidth / window.screen.width;
-       const heightScale = this._elementHeight / window.screen.height;
+    if (this._elementTop && this._elementLeft && this._elementWidth && this._elementHeight) {
+      const widthScale = this._elementWidth / window.screen.width;
+      const heightScale = this._elementHeight / window.screen.height;
 
-       this._modal.classList.remove('modal--modal-visible');
-       this._staticContent.classList.remove('modal__static-content--modal-visible');
-       this._modalWrapper.classList.remove('modal__wrapper--visible');
-       this._modalWrapper.style.transform =
-         `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${this._elementTop})`;
-       setTimeout(() => {
-         this._modal.classList.remove('modal--visible');
-         this._staticContent.setAttribute('aria-hidden', 'false');
-       }, 200);
-     } else {
-       this._modal.classList.remove('modal--visible');
-     }
+      this._modal.classList.remove('modal--modal-visible');
+      this._staticContent.classList.remove('modal__static-content--modal-visible');
+      this._modalWrapper.classList.remove('modal__wrapper--visible');
+      this._modalWrapper.style.transform =
+        `matrix(${widthScale}, 0, 0, ${heightScale}, ${this._elementLeft}, ${this._elementTop})`;
+      setTimeout(() => {
+        this._modal.classList.remove('modal--visible');
+        this._staticContent.setAttribute('aria-hidden', 'false');
+      }, 200);
+    } else {
+      this._modal.classList.remove('modal--visible');
+    }
   }
 
+  /**
+   * Показать окно из элемента element
+   *
+   * @param {HTMLElement} element Элемент, из которого будет "вылетать" диалог
+   */
   showFrom(element) {
     const viewportOffset = element.getBoundingClientRect();
 

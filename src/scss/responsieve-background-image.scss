@@ -1,3 +1,10 @@
+// Создает адаптивный фон.
+// Фон будет вести себя подобно <picture><source></source><img></picture> конструкции
+// Получает параметр $fileName, содержащий имя файла в папке assets
+// Добавляет в фон следующие файлы:
+// - $fileName.svg - если передан флаг $withSvg
+// - $fileName@1x.png
+// - $fineName@2x.png
 @mixin responsive-background-image($fileName, $withSvg: false) {
   background-image: url('../../assets/'+$fileName+'@1x.png');
 

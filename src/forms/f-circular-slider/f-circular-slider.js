@@ -1,5 +1,8 @@
 import {ThumbControllers} from './../../js/vendor/thumbcontrollers/ThumbControllers';
 
+// Реализация слайдера взята с https://github.com/Astrak/ThumbControllers.js
+// Пришлось ее чуть-чуть допилить, т.к. она там никак не настраивается
+
 const circularSliderBlocks = document.querySelectorAll('.f-circular-slider');
 for (const circularSliderBlock of circularSliderBlocks) {
   const text = circularSliderBlock.querySelector('.f-circular-slider__text');

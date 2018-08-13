@@ -1,3 +1,6 @@
+// Устанавливает для элемента ячейку таблицы (CSS grid), так, чтоб элементы заполнялись постранично
+// в $columns колонок и $rows строк на странице
+// $max - максимальное количество элементов.
 @mixin paged-grid-child($columns, $rows, $max: 100) {
   $per-page: $columns * $rows;
   @for $item from 1 through $max {

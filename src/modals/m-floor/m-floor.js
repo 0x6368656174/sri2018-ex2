@@ -1,7 +1,7 @@
 import {Modal} from '../modal';
 
 /**
- * Диалог с крутилкой
+ * Диалог настройки пола
  */
 export class MFloorDialog extends Modal {
   constructor() {
@@ -9,4 +9,8 @@ export class MFloorDialog extends Modal {
   }
 }
 
+/**
+ * Диалог настройки пола
+ * @type {MFloorDialog}
+ */
 export const mFloor = new MFloorDialog();

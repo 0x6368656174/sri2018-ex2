@@ -23,10 +23,11 @@ function findAncestor(element, parentClass) {
  * Применяет фильтр к плашкам
  *
  * @param {HTMLElement} filter Элемент фильтра
- * @param {string} param Параметр фильтра (например, type)
- * @param {string} value Значение параметра фильтра (например, cam)
+ * @param {{param, value}} id ID фильтра, должен содержать param и value
+ * @param {boolean} isDesktop Признак того, что фильтр вызван из десктоп-версии
  */
-function applyTilesFilter(filter, {param, value}) {
+function applyTilesFilter(filter, id, isDesktop = true) {
+  const {param, value} = id;
   // Найдем родительский блок с плашками
   const tileListBlock = findAncestor(filter, 'c-tile-list');
   // Найдем плашки
@@ -48,8 +49,11 @@ function applyTilesFilter(filter, {param, value}) {
     }
   }
 
-  // Сбросим статус
-  resetState(tileListBlock);
+  // Если фильтр применили в десктоп версии
+  if (isDesktop) {
+    // Сбросим статус
+    resetState(tileListBlock);
+  }
 }
 
 // Пройдемся по всем фильтрам
@@ -82,7 +86,7 @@ for (const filter of filters) {
     ],
     ensureBtnText: 'Выбрать',
     cancelBtnText: 'Отмена',
-    callback: (index, data) => applyTilesFilter(filter, data[0].id),
+    callback: (index, data) => applyTilesFilter(filter, data[0].id, false),
   });
   // В плагине табы и управление с клавиатуры работать не будут, т.к. он это не поддерживает, а в задаче про
   // выпадающее меню ничего сказано не было. Если бы был дизайн, то можно было бы и там нормальный accessibility
@@ -368,7 +372,11 @@ function resetState(tileListBlock) {
   hideInvisibleTiles(tilesContainer, tiles, clientWidth);
 }
 
-/** @type {Map<HTMLElement, ResizeObserver>} */
+/**
+ * Список обзервелов изменения размера
+ *
+ * @type {Map<HTMLElement, ResizeObserver>}
+ */
 const resizeObservables = new Map();
 
 // Пройдем по всем блока с плашками

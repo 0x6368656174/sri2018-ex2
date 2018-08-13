@@ -9,6 +9,7 @@ tiles.forEach(tile => {
   const {dialogType} = tile.dataset;
 
   tile.addEventListener('click', () => {
+    // В зависимости от dialogType, будем показывать тот или иной диалог
     switch (dialogType) {
       case 'light': {
         mLight.showFrom(tile);
