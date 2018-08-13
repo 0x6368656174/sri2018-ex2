@@ -40,17 +40,19 @@ function moveScripts() {
 }
 
 /**
- * Листенер, вызываемый при изменении сайта с десктоп на мобильную версию
+ * Обработчик, вызываемый при изменении сайта с десктоп на мобильную версию
  *
  * @param {MediaQueryList} event
  */
 function desktopMediaListener(event) {
   if (event.matches) {
+    // Если это десктоп, то включим перемотку
     currentVisibleScript = 0;
     showScriptsFrom(currentVisibleScript);
 
     moveScriptsTopButton.addEventListener('click', moveScripts);
   } else {
+    // Иначе выключим перемотку и востановим состояние
     moveScriptsTopButton.removeEventListener('click', moveScripts);
     scripts.style.top = null;
     for (const script of scriptElements) {
@@ -59,6 +61,6 @@ function desktopMediaListener(event) {
   }
 }
 
-// Добавим листенер изменения размера сайта
+// Добавим обработчик изменения размера сайта
 desktopMedia.addListener(desktopMediaListener);
 desktopMediaListener(desktopMedia);

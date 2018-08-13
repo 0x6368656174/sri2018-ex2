@@ -17,29 +17,30 @@
   }
 
   &__badge {
-    align-items: center;
-    background-color: $color-light-gray;
-    border-radius: rem(20px);
-    display: flex;
-    font-size: rem(13px);
-    height: rem(30px);
-    justify-content: center;
     margin-right: rem(10px);
-    padding-left: rem(15px);
-    padding-right: rem(15px);
-    white-space: nowrap;
 
     &:nth-last-of-type(1) {
       margin-right: 0;
     }
+  }
+
+  &__badge-button {
+    background-color: $color-light-gray;
+    border-radius: rem(20px);
+    border-style: none;
+    color: #000;
+    display: flex;
+    font-size: rem(13px);
+    font-weight: bold;
+    height: rem(30px);
+    padding-left: rem(15px);
+    padding-right: rem(15px);
+    text-decoration: none;
+    transition: background-color 0.2s ease-out;
+    white-space: nowrap;
 
     &--active {
       background-color: $color-yellow;
     }
-  }
-
-  &__badge-link {
-    color: #000;
-    text-decoration: none;
   }
 }

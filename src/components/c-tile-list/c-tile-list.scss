@@ -43,28 +43,26 @@
   }
 
   &__filters {
-    display: flex;
-    list-style: none;
-    margin: 0 0 0 auto;
-    padding: 0;
+    margin-left: auto;
   }
 
-  &__filter {
-    align-items: center;
-    border-radius: rem(15px);
+  &__filter-list {
     display: none;
+  }
+
+  &__filter-button {
+    align-items: center;
+    background-color: $color-yellow;
+    border-radius: rem(15px);
+    border-style: none;
+    display: flex;
     font-size: rem(13px);
     font-weight: bold;
     height: rem(30px);
     padding-left: rem(15px);
     padding-right: rem(15px);
 
-    &--active {
-      background-color: $color-yellow;
-      display: flex;
-    }
-
-    &--active::after {
+    &::after {
       @include responsive-background-image(icons/arrow--down);
       background-size: rem(12px) rem(12px);
       content: '';

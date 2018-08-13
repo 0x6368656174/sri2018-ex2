@@ -1,8 +1,8 @@
 <div class="c-badges">
   <ul class="c-badges__list">
     {% for badge in badges %}
-      <li class="c-badges__badge {{ loop.first ? 'c-badges__badge--active' }}">
-        <a class="c-badges__badge-link" href="{{ badge.href }}">{{ badge.name }}</a>
+      <li class="c-badges__badge">
+        <button class="c-badges__badge-button {{ loop.first ? 'c-badges__badge-button--active' }}" data-param="{{ badge.param }}" data-value="{{ badge.value }}" role="button">{{ badge.name }}</button>
       </li>
     {% endfor %}
   </ul>

@@ -9,6 +9,7 @@
   font-family: $font-arial;
   height: rem(120px);
   padding: 0;
+  transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out;
   width: rem(200px);
 
   &:hover {

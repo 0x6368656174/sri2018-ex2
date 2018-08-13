@@ -9,11 +9,10 @@ $width: $columns * 200 + ($columns - 1) * 15;
 
 .c-tile-list {
   margin: -15px;
+  margin-right: 0;
   overflow: hidden;
   padding: 15px;
-  //margin-right: -40px;
   padding-right: 0;
-  //margin-left: 0;
 
   &--grid {
     width: rem(#{$width + 45}px);
@@ -23,18 +22,24 @@ $width: $columns * 200 + ($columns - 1) * 15;
     margin-left: rem(40px);
     margin-right: rem(40px);
 
+    &--with-filters {
+      margin-bottom: rem(25px);
+    }
+
     &--grid {
       margin-left: 0;
     }
   }
 
   &__tiles {
+    margin-left: rem(40px);
     overflow: visible;
     width: auto;
 
     &--grid {
       display: grid;
       grid-gap: rem(15px) rem(15px);
+      margin-left: 0;
       width: rem(#{$width}px);
     }
   }
@@ -84,5 +89,17 @@ $width: $columns * 200 + ($columns - 1) * 15;
     &--next {
       transform: rotate(180deg);
     }
+  }
+
+  &__filters {
+    margin-left: 0;
+  }
+
+  &__filter-button {
+    display: none;
+  }
+
+  &__filter-list {
+    display: block;
   }
 }

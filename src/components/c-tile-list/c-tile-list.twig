@@ -6,14 +6,25 @@
     } %}
 
     {% if filters %}
-      <ul class="c-tile-list__filters">
-        <li class="c-tile-list__filter c-tile-list__filter--active" role="button" tabindex="0">Все</li>
-        {% for filterParam, filterOptions in filters %}
-          {% for filterOptionValue, filterOptionName in filterOptions %}
-            <li class="c-tile-list__filter" data-param="{{ filterParam }}" data-value="{{ filterOptionValue }}" role="button" tabindex="0">{{ filterOptionName }}</li>
+      <div class="c-tile-list__filters">
+        <button class="c-tile-list__filter-button">Все</button>
+
+        <div class="c-tile-list__filter-list">
+          {% set badges = [{
+            'name': 'Все',
+          }] %}
+          {% for filterParam, filterOptions in filters %}
+            {% for filterOptionValue, filterOptionName in filterOptions %}
+              {% set badges = badges | merge([{
+                'name': filterOptionName,
+                'param': filterParam,
+                'value': filterOptionValue,
+              }]) %}
+            {% endfor %}
           {% endfor %}
-        {% endfor %}
-      </ul>
+          {% include 'components/c-badges/c-badges.twig' %}
+        </div>
+      </div>
     {% endif %}
 
     <button class="c-tile-list__page-button c-tile-list__page-button--prev" aria-label="Показать предыдущую страницу">

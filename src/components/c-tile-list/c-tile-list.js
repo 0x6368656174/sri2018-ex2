@@ -1,5 +1,8 @@
 import MobileSelect from 'mobile-select';
 import ResizeObserver from 'resize-observer-polyfill';
+import {disableFocus, enableFocus} from '../c-tile/c-tile';
+import {getOptions} from '../c-badges/c-badges';
+import {desktopMedia} from '../../js/media';
 
 // ФИЛЬТРЫ
 
@@ -25,13 +28,13 @@ function findAncestor(element, parentClass) {
  */
 function applyTilesFilter(filter, {param, value}) {
   // Найдем родительский блок с плашками
-  const tilesBlock = findAncestor(filter, 'c-tile-list');
+  const tileListBlock = findAncestor(filter, 'c-tile-list');
   // Найдем плашки
-  const tiles = tilesBlock.querySelectorAll('.c-tile-list__tile');
+  const tiles = tileListBlock.querySelectorAll('.c-tile-list__tile');
 
   // Пройдем по всем плашкам
   for (const tile of tiles) {
-    if (param === undefined && value === undefined) {
+    if (!param && !value) {
       // Если выбрали все, то покажем плашку
       tile.classList.remove('c-tile-list__tile--hidden');
     } else {
@@ -44,6 +47,9 @@ function applyTilesFilter(filter, {param, value}) {
       }
     }
   }
+
+  // Сбросим статус
+  resetState(tileListBlock);
 }
 
 // Пройдемся по всем фильтрам
@@ -60,23 +66,14 @@ for (const filter of filters) {
   const idClass = `c-tile-list__filters--id-${id}`;
   filter.classList.add(idClass);
 
+  // Найдем ярлыки
+  const badges = filter.querySelector('.c-badges');
   // Подготовим данные
-  const filterOptions = filter.querySelectorAll('.c-tile-list__filter');
-  const data = Array.from(filterOptions)
-    .map(filter => {
-      const {param, value} = filter.dataset;
-      return {
-        id: {
-          param,
-          value,
-        },
-        value: filter.innerHTML,
-      };
-    });
+  const data = getOptions(badges);
 
   // Привяжем плагин с фильтром
-  const select = new MobileSelect({
-    trigger: `.${idClass} .c-tile-list__filter--active`,
+  new MobileSelect({
+    trigger: `.${idClass} .c-tile-list__filter-button`,
     title: 'Фильтр устройств',
     wheels: [
       {
@@ -87,19 +84,12 @@ for (const filter of filters) {
     cancelBtnText: 'Отмена',
     callback: (index, data) => applyTilesFilter(filter, data[0].id),
   });
-
-  // Добавим обработчики для нажатия на Энтер и пробел над фильтром
-  for (const filterOption of filterOptions) {
-    filterOption.addEventListener('keypress', event => {
-      if (event.key === ' ' || event.key === 'Enter') {
-        select.show();
-      }
-    });
-  }
-
   // В плагине табы и управление с клавиатуры работать не будут, т.к. он это не поддерживает, а в задаче про
   // выпадающее меню ничего сказано не было. Если бы был дизайн, то можно было бы и там нормальный accessibility
   // запилить
+
+  // Повещаем обработчик события на изменение текущего ярлыка
+  badges.addEventListener('activeChanged', event => applyTilesFilter(filter, event.detail.activeId));
 }
 
 // ПРОКРУТКА
@@ -252,6 +242,8 @@ function showAllTiles(tiles) {
   for (const tile of tiles) {
     // Покажем плашку
     tile.style.visibility = null;
+    // Включим у плашки фокус
+    enableFocus(tile.querySelector('.c-tile'));
   }
 }
 
@@ -261,25 +253,34 @@ function showAllTiles(tiles) {
  * @param {HTMLElement} tilesContainer Контейнер с плашками
  * @param {HTMLElement[]} tiles Плашки
  * @param {number} clientWidth Ширина области просмотра
- * @param {number} marginRight На сколько пикселей "вылазит" контент из плашки
+ * @param {number} margin На сколько пикселей "вылазит" контент из плашки
  */
-function hideInvisibleTiles(tilesContainer, tiles, clientWidth, marginRight = 40) {
+function hideInvisibleTiles(tilesContainer, tiles, clientWidth, margin = 40) {
   // Минимальное смещение, где начинают быть видны плашки
   const minOffset = getCurrentOffset(tilesContainer);
 
   // Максимально смещение, где заканчивают быть видны плашки
-  const maxOffset = minOffset + clientWidth + marginRight;
+  const maxOffset = minOffset + clientWidth;
 
   // Пройдемся по всем плашкам
   for (const tile of tiles) {
-    // Скроем, если плашка левее минимального смещения
+    // Выключим фокус у плашек, которые "вылазят" слева за область просмотра
     if (tile.offsetLeft + tile.offsetWidth < minOffset) {
-      tile.style.visibility = 'hidden';
-      continue;
+      disableFocus(tile.querySelector('.c-tile'));
     }
 
-    // Скроем, если плашка правее максимального смещения
+    // Скроем, если плашка левее минимального смещения
+    if (tile.offsetLeft + tile.offsetWidth < minOffset - margin) {
+      tile.style.visibility = 'hidden';
+    }
+
+    // Выключим фокус у плашек, которые "вылазят" справа за область просмотра
     if (tile.offsetLeft > maxOffset) {
+      disableFocus(tile.querySelector('.c-tile'));
+    }
+
+    // Скроем плашки, которые "вылазят" справа за область просмотра с учетом отступа справа
+    if (tile.offsetLeft > maxOffset + margin) {
       tile.style.visibility = 'hidden';
     }
   }
@@ -344,13 +345,15 @@ const tileListBlocks = document.querySelectorAll('.c-tile-list');
  *
  * Данный метод нужно вызывать при инициализации, а так же изменении размера плашек
  *
- * @param {HTMLElement} nextButton Кнопка "вперед"
- * @param {HTMLElement} prevButton Кнопка "назад"
- * @param {HTMLElement} tileViewPort Контейнер области просмотра плашек
- * @param {HTMLElement} tilesContainer Контейнер с плашками
- * @param {HTMLElement[]} tiles Плашки
+ * @param {HTMLElement} tileListBlock Блок "Список плашек"
  */
-function resetState(nextButton, prevButton, tileViewPort, tilesContainer, tiles) {
+function resetState(tileListBlock) {
+  const prevButton = tileListBlock.querySelector('.c-tile-list__page-button--prev');
+  const nextButton = tileListBlock.querySelector('.c-tile-list__page-button--next');
+  const tileViewPort = tileListBlock.querySelector('.c-tile-list__tiles');
+  const tilesContainer = tileListBlock.querySelector('.c-tile-list__tiles-container');
+  const tiles = Array.from(tileListBlock.querySelectorAll('.c-tile-list__tile'));
+
   // Покажем все плашки
   showAllTiles(tiles);
 
@@ -361,12 +364,19 @@ function resetState(nextButton, prevButton, tileViewPort, tilesContainer, tiles)
   const clientWidth = tileViewPort.offsetWidth;
   updateNavigateButtonState(nextButton, prevButton, tilesContainer, tiles, clientWidth);
 
-  // Запустим таймер анимации, в конце которого скроем все невидимые плашки
-  setTimeout(() => hideInvisibleTiles(tilesContainer, tiles, clientWidth), 200);
+  // Скроем все невидимые плашки
+  hideInvisibleTiles(tilesContainer, tiles, clientWidth);
 }
+
+/** @type {Map<HTMLElement, ResizeObserver>} */
+const resizeObservables = new Map();
 
 // Пройдем по всем блока с плашками
 for (const tileListBlock of tileListBlocks) {
+  if (!(tileListBlock instanceof HTMLElement)) {
+    continue;
+  }
+
   const prevButton = tileListBlock.querySelector('.c-tile-list__page-button--prev');
   const nextButton = tileListBlock.querySelector('.c-tile-list__page-button--next');
   const tileList = tileListBlock.querySelector('.c-tile-list__tiles');
@@ -388,13 +398,53 @@ for (const tileListBlock of tileListBlocks) {
     updateNavigateButtonState(nextButton, prevButton, tilesContainer, tiles, clientWidth);
   });
 
-  // Сбросим статус
-  resetState(nextButton, prevButton, tileList, tilesContainer, tiles);
-
   // Добавим обзервер изменения размера области просмотра плашек
   const ro = new ResizeObserver(() => {
     // В случае изменения размера, сбросим статус
-    resetState(nextButton, prevButton, tileList, tilesContainer, tiles);
+    resetState(tileListBlock);
   });
-  ro.observe(tileList);
+  resizeObservables.set(tileList, ro);
 }
+
+/**
+ * Обработчик, вызываемый при изменении сайта с десктоп на мобильную версию
+ *
+ * @param {MediaQueryList} event
+ */
+function desktopMediaListener(event) {
+  if (event.matches) {
+    for (const tileListBlock of tileListBlocks) {
+      if (!(tileListBlock instanceof HTMLElement)) {
+        continue;
+      }
+
+      // Включим обзевыблы изменения размера
+      const tileList = tileListBlock.querySelector('.c-tile-list__tiles');
+      resizeObservables.get(tileList).observe(tileList);
+
+      // Сбросим статус
+      resetState(tileListBlock);
+    }
+  } else {
+    // Если это мобильная версия
+    for (const tileListBlock of tileListBlocks) {
+      if (!(tileListBlock instanceof HTMLElement)) {
+        continue;
+      }
+
+      // Выключим обзевыблы изменения размера
+      const tileList = tileListBlock.querySelector('.c-tile-list__tiles');
+      resizeObservables.get(tileList).disconnect();
+
+      // Восстановим состояние
+      const tilesContainer = tileListBlock.querySelector('.c-tile-list__tiles-container');
+      const tiles = Array.from(tileListBlock.querySelectorAll('.c-tile-list__tile'));
+      tilesContainer.style.left = null;
+      showAllTiles(tiles);
+    }
+  }
+}
+
+// Добавим обработчик изменения размера сайта
+desktopMedia.addListener(desktopMediaListener);
+desktopMediaListener(desktopMedia);

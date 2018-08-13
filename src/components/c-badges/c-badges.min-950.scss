@@ -1,0 +1,8 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.c-badges {
+  height: rem(30px);
+  overflow-x: auto;
+}
