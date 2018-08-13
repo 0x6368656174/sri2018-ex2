@@ -20,10 +20,10 @@ $width: $columns * 200 + ($columns - 1) * 15;
 
   &__title {
     margin-left: rem(40px);
-    margin-right: rem(40px);
+    margin-right: rem(28px);
 
     &--with-filters {
-      margin-bottom: rem(25px);
+      margin-bottom: rem(20px);
     }
 
     &--grid {
@@ -83,7 +83,7 @@ $width: $columns * 200 + ($columns - 1) * 15;
 
     &--prev {
       margin-left: auto;
-      margin-right: rem(10px);
+      margin-right: rem(12px);
     }
 
     &--next {

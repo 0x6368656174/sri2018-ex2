@@ -1,0 +1,44 @@
+@import '~sass-rem';
+
+@import '../../scss/const';
+
+.c-header {
+  border-bottom: 1px solid $color-hr;
+  height: rem(92px);
+  padding: 0;
+  padding-left: rem(40px);
+
+  &__menu-button {
+    display: none;
+  }
+
+  &__menu {
+    display: block;
+    margin-left: rem(52px);
+  }
+
+  &__menu-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__menu-item {
+    margin-right: rem(28px);
+  }
+
+  &__menu-link {
+    color: $color-gray;
+    font-size: rem(16px);
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--active {
+      color: $color-black;
+    }
+  }
+}

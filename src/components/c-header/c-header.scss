@@ -17,6 +17,10 @@
   }
 
   &__menu {
+    display: none;
+  }
+
+  &__menu-button {
     height: rem(13.3px);
     margin-left: auto;
     width: rem(16px);
