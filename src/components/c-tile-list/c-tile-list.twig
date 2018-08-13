@@ -23,8 +23,8 @@
   </div>
 
 
-  <div class="c-tile-list__tiles-container {{ grid ? 'c-tile-list__tiles-container--grid' }}">
-    <ul class="c-tile-list__tiles {{ grid ? 'c-tile-list__tiles--grid' }}">
+  <div class="c-tile-list__tiles {{ grid ? 'c-tile-list__tiles-container--grid' }}">
+    <ul class="c-tile-list__tiles-container {{ grid ? 'c-tile-list__tiles--grid' }}">
       {% for tile in tiles %}
         {% set data = '' %}
         {% for paramKey, paramValue in tile.param %}

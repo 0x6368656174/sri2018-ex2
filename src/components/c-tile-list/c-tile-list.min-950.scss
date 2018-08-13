@@ -10,6 +10,7 @@
   }
 
   &__title {
+    margin-left: rem(40px);
     margin-right: 0;
 
     &--grid {
@@ -17,23 +18,23 @@
     }
   }
 
-  &__tiles-container {
-    margin: -15px;
-    overflow: hidden;
-    padding: 15px;
-    width: initial;
-  }
-
   &__tiles {
-    margin: 0;
+    margin: rem(-15px);
+    overflow: hidden;
+    padding: rem(15px);
+    width: initial;
 
     &--grid {
       display: grid;
       grid-gap: rem(15px) rem(15px);
-      left: 0;
-      position: relative;
-      transition: left 0.2s ease-out;
     }
+  }
+
+  &__tiles-container {
+    left: 0;
+    margin: 0;
+    position: relative;
+    transition: left 0.2s ease-out;
   }
 
   &__tile {
